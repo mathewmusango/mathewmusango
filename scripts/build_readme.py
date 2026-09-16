@@ -34,6 +34,8 @@ RAW = f"https://raw.githubusercontent.com/{USER}/{USER}/{BRANCH}"
 
 SITE = "https://mathewmusango.github.io/my-portfolio/"
 LINKEDIN = "https://www.linkedin.com/in/mathew-musango/"
+ORCID_ID = "0009-0001-1534-4389"
+ORCID = f"https://orcid.org/{ORCID_ID}"
 EMAIL = "musangomathew@gmail.com"
 
 # "own"  → the committed SVG cards below (no external service, always up)
@@ -273,6 +275,10 @@ def badges() -> str:
             badge("Website", "mathewmusango.github.io", "26a641", "googlechrome", SITE,
                   "Portfolio"),
             badge("LinkedIn", "Connect", "0077B5", "linkedin", LINKEDIN, "LinkedIn"),
+            # shields.io treats "-" in a badge path as a separator, so the hyphens
+            # in an ORCID iD have to be doubled to survive.
+            badge("ORCID", ORCID_ID.replace("-", "--"), "A6CE39", "orcid", ORCID,
+                  "ORCID iD"),
             badge("Email", EMAIL, "D14836", "gmail", f"mailto:{EMAIL}", "Email"),
             badge("GitHub", USER, "181717", "github", f"https://github.com/{USER}",
                   "GitHub profile"),
