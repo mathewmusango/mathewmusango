@@ -2,41 +2,41 @@
   {
     "name": "Oracle Cloud Infrastructure (OCI)",
     "note": "the second cloud alongside AWS",
-    "icon": "cloud"
+    "glyph": "cloud"
   },
   {
     "name": "Local LLM infrastructure",
     "note": "hardware sizing, runtimes and serving",
-    "icon": "chip"
+    "glyph": "chip"
   },
   {
     "name": "AI-assisted engineering workflows",
     "note": "agent skills, prompts and review",
-    "icon": "spark"
+    "glyph": "spark"
   },
   {
     "name": "Virtualisation (KVM/libvirt)",
     "note": "self-hosted VM lab: storage, networking, snapshots",
-    "icon": "server"
+    "slug": "qemu"
   },
   {
     "name": "PKI and private certificate authorities",
     "note": "issuing, trusting and rotating certificates end to end",
-    "icon": "key"
+    "slug": "openssl"
   },
   {
     "name": "Observability depth (logging and tracing)",
     "note": "beyond metrics: OpenTelemetry, log pipelines, traces",
-    "icon": "chart"
+    "slug": "opentelemetry"
   },
   {
     "name": "Terraform module design and testing",
     "note": "reusable modules, terraform test, policy checks",
-    "icon": "cube"
+    "glyph": "cube"
   },
   {
     "name": "GitOps and continuous delivery",
     "note": "declarative, pull-based delivery",
-    "icon": "pipeline"
+    "glyph": "pipeline"
   }
 ]

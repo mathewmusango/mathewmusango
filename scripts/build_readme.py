@@ -84,8 +84,28 @@ BRAND_SLUGS = {
 LOCAL_BRANDS = {"amazonaws"}
 
 ICON_SIZE = 30
-ICON_COLOUR = "39d353"
 CDN = "https://cdn.simpleicons.org"
+
+# Icons are served in each vendor's own colour. A brand colour that fails WCAG's 3:1
+# contrast on GitHub's white or dark canvas gets a tint for that theme only, computed
+# from the brand hex by mixing towards black (light theme) or white (dark theme) so the
+# hue survives and the glyph stays legible either way. Only the brands that need it are
+# listed; everything else is served in its official colour. DARK_MARK_BG is GitHub's
+# dark canvas, used when these values were derived.
+THEME_COLOURS = {
+    "css": {"dark": "baa3d1"},
+    "elasticsearch": {"dark": "8cb2bf"},
+    "github": {"dark": "979797"},
+    "gitlab": {"light": "8b3c15"},
+    "gnubash": {"light": "2b5e14"},
+    "javascript": {"light": "887b10"},
+    "linux": {"light": "8b6d14"},
+    "markdown": {"dark": "8c8c8c"},
+    "openssl": {"dark": "c09594"},
+    "opentelemetry": {"dark": "8c8c8c"},
+    "podman": {"dark": "caa0d4"},
+    "qemu": {"light": "8c3800"},
+}
 
 BG = "#030303"
 BORDER = "#222222"
@@ -256,15 +276,34 @@ def badges() -> str:
     )
 
 
-def icon(src: str, name: str) -> str:
+def icon(src: str, name: str, tooltip: str | None = None,
+         src_dark: str | None = None) -> str:
+    """An ``<img>``, or a ``<picture>`` when the mark needs a per-theme colour."""
+    label = tooltip or name
+    attributes = (
+        f'alt="{esc(name)}" title="{esc(label)}" width="{ICON_SIZE}" height="{ICON_SIZE}"'
+    )
+    if not src_dark:
+        return f'<img src="{src}" {attributes}>'
     return (
-        f'<img src="{src}" alt="{esc(name)}" title="{esc(name)}" '
-        f'width="{ICON_SIZE}" height="{ICON_SIZE}">'
+        "<picture>\n"
+        f'    <source media="(prefers-color-scheme: dark)" srcset="{src_dark}">\n'
+        f'    <img src="{src}" {attributes}>\n'
+        "  </picture>"
     )
 
 
+def vendor_icon(slug: str, name: str, tooltip: str | None = None) -> str:
+    """A CDN glyph in the vendor's colour, with a theme tint only if it needs one."""
+    base = f"{CDN}/{urllib.parse.quote(slug)}"
+    fix = THEME_COLOURS.get(slug, {})
+    light = f'{base}/{fix["light"]}' if fix.get("light") else base
+    dark = f'{base}/{fix["dark"]}' if fix.get("dark") else None
+    return icon(light, name, tooltip, dark)
+
+
 def tool_row() -> str:
-    """One flat glyph per tool, named in the tooltip."""
+    """One vendor-coloured glyph per tool, named in the tooltip."""
     icons = []
     for name in CORE_TECH:
         slug = BRAND_SLUGS.get(name)
@@ -273,23 +312,24 @@ def tool_row() -> str:
         if slug in LOCAL_BRANDS:
             icons.append(icon(f"{IMAGE_BASE}assets/svg/brands/{slug}.svg", name))
         else:
-            icons.append(icon(f"{CDN}/{urllib.parse.quote(slug)}/{ICON_COLOUR}", name))
+            icons.append(vendor_icon(slug, name))
     return "\n  &nbsp;\n  ".join(icons)
 
 
 def learning_row() -> str:
-    """The Learning row: our own glyphs, same size and treatment as the tools."""
+    """Vendor marks where the subject is a real product, our own marks where it is an
+    area: OCI (no mark exists), local-LLM work (no runtime chosen), AI-assisted
+    workflows, Terraform modules and GitOps."""
     icons = []
     for item in LEARNING:
-        if not item.get("icon"):
-            continue
         name = item["name"]
         tooltip = name + (" — " + item["note"] if item.get("note") else "")
-        icons.append(
-            f'<img src="{IMAGE_BASE}assets/svg/icons/{item["icon"]}.svg" '
-            f'alt="{esc(name)}" title="{esc(tooltip)}" '
-            f'width="{ICON_SIZE}" height="{ICON_SIZE}">'
-        )
+        if item.get("slug"):
+            icons.append(vendor_icon(item["slug"], name, tooltip))
+        elif item.get("glyph"):
+            icons.append(
+                icon(f'{IMAGE_BASE}assets/svg/icons/{item["glyph"]}.svg', name, tooltip)
+            )
     return "\n  &nbsp;\n  ".join(icons)
 
 
@@ -344,7 +384,7 @@ def readme() -> str:
 
 
 def main() -> None:
-    icons = write_learning_icons([item["icon"] for item in LEARNING if item.get("icon")])
+    icons = write_learning_icons([item["glyph"] for item in LEARNING if item.get("glyph")])
 
     svg_dir = ROOT / "assets" / "svg"
     svg_dir.mkdir(parents=True, exist_ok=True)
