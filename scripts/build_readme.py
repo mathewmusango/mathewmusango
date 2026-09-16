@@ -126,12 +126,41 @@ def _glyph_key(ink: str) -> str:
     )
 
 
+def _glyph_chart(ink: str) -> str:
+    return (
+        f'<polyline points="12,33 19.5,25.5 25,29.5 36,15.5" fill="none" stroke="{ink}" '
+        f'stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>'
+        f'<rect x="11" y="35.2" width="26" height="2.4" rx="1.2" fill="{ink}"/>'
+    )
+
+
+def _glyph_cube(ink: str) -> str:
+    return (
+        f'<polygon points="24,10.5 35.5,17 35.5,31 24,37.5 12.5,31 12.5,17" fill="none" '
+        f'stroke="{ink}" stroke-width="2.6" stroke-linejoin="round"/>'
+        f'<polygon points="24,10.5 35.5,17 24,23.5 12.5,17" fill="{ink}" opacity="0.5"/>'
+        f'<rect x="22.8" y="23.2" width="2.4" height="14" fill="{ink}" opacity="0.5"/>'
+    )
+
+
+def _glyph_pipeline(ink: str) -> str:
+    chevrons = []
+    for x in (11, 20.5, 30):
+        chevrons.append(
+            f'<polygon points="{x},14 {x + 7.5},24 {x},34 {x + 3.2},24" fill="{ink}"/>'
+        )
+    return "".join(chevrons)
+
+
 GLYPHS = {
     "cloud": _glyph_cloud,
     "chip": _glyph_chip,
     "spark": _glyph_spark,
     "server": _glyph_server,
     "key": _glyph_key,
+    "chart": _glyph_chart,
+    "cube": _glyph_cube,
+    "pipeline": _glyph_pipeline,
 }
 
 # Display name (as used by the hub page) → skillicons.dev slug. Names absent from
@@ -157,6 +186,7 @@ SKILL_SLUGS = {
     "Prometheus": "prometheus",
     "Grafana": "grafana",
     "Obsidian": "obsidian",
+    "Elasticsearch": "elasticsearch",
 }
 # Always-true extras appended to the icon row.
 EXTRA_SKILLS = ["git", "github"]
@@ -375,9 +405,11 @@ def own_stats(snapshot: dict) -> str:
         f'{IMAGE_BASE}assets/svg/langs.svg',
         f'{IMAGE_BASE}assets/svg/streak.svg',
     ]
+    stats = snapshot["stats"]
+    scope = "public and private" if stats.get("scope") == "all" else "public"
     alts = [
-        f"{snapshot['stats']['repos']} public repositories, {snapshot['stats']['stars']} stars, "
-        f"{snapshot['stats']['followers']} followers, {snapshot['stats']['years_active']} years active",
+        f"{stats['repos']} {scope} repositories, {stats['stars']} stars, "
+        f"{stats['followers']} followers, {stats['years_active']} years active",
         "Most used languages by bytes committed",
         "Current streak, longest streak and contributions in the last year",
     ]
@@ -477,9 +509,9 @@ def readme(snapshot: dict) -> str:
   <img src="{IMAGE_BASE}assets/svg/footer.svg" alt="" width="100%">
 </p>
 
-<sub>Statistics, cards and this README are generated from GitHub's public API by
-<a href="https://github.com/{USER}/{USER}/blob/{BRANCH}/scripts/build_readme.py"><code>scripts/build_readme.py</code></a>
-— last refreshed {refreshed}. Contribution activity below is rendered natively by GitHub.</sub>
+<sub>Cards and this README are generated from GitHub's API by
+<code>scripts/build_readme.py</code> on a daily schedule — last refreshed {refreshed}.
+Contribution activity below is rendered natively by GitHub.</sub>
 """
 
 

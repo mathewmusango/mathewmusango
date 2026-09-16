@@ -16,5 +16,6 @@
   "MkDocs",
   "Prometheus",
   "Grafana",
-  "Obsidian"
+  "Obsidian",
+  "Elasticsearch"
 ]

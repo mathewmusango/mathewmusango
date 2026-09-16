@@ -23,5 +23,20 @@
     "name": "PKI and private certificate authorities",
     "note": "issuing, trusting and rotating certificates end to end",
     "icon": "key"
+  },
+  {
+    "name": "Observability depth — logging and tracing",
+    "note": "beyond metrics: OpenTelemetry, log pipelines, traces",
+    "icon": "chart"
+  },
+  {
+    "name": "Terraform module design and testing",
+    "note": "reusable modules, terraform test, policy checks",
+    "icon": "cube"
+  },
+  {
+    "name": "GitOps and continuous delivery",
+    "note": "declarative, pull-based delivery",
+    "icon": "pipeline"
   }
 ]

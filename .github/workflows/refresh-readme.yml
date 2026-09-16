@@ -27,6 +27,11 @@ jobs:
           python-version: "3.13"
 
       - name: Refresh the snapshot
+        # A token lets the repository count, star total and language mix include
+        # private repos. Create a read-only token and save it as PROFILE_TOKEN;
+        # when the secret is absent the script simply uses public data.
+        env:
+          GITHUB_TOKEN: ${{ secrets.PROFILE_TOKEN }}
         run: python3 scripts/fetch_profile.py
 
       - name: Redraw the cards and the README

@@ -36,14 +36,30 @@ recoverable from git history up to commit `150d2aa`.
 ## Refresh
 
 ```sh
-python3 scripts/fetch_profile.py   # data/profile.json (needs network)
-python3 scripts/build_readme.py    # README.md + assets/svg/** (offline)
+python3 scripts/fetch_profile.py                        # public data only
+GITHUB_TOKEN=<token> python3 scripts/fetch_profile.py   # + private repositories
+python3 scripts/build_readme.py                         # README.md + assets/svg/** (offline)
 ```
 
-`fetch_profile.py` uses only public, **unauthenticated** endpoints: the user record (followers, join
-date), the repository list, per-repo language bytes, and GitHub's contribution calendar. It needs no
-token. The daily workflow runs both scripts and commits whatever moved — the README's "last
-refreshed" date changes daily, so a daily commit is expected.
+`fetch_profile.py` reads the user record (followers, join date), the repository list, per-repo
+language bytes and GitHub's contribution calendar.
+
+**Public vs private repositories.** `REPO_SCOPE` at the top of the script is `"all"` by default:
+with a token, the repository count, star total and language mix cover **public and private** repos
+and `stats.scope` becomes `"all"`; set `REPO_SCOPE = "public"` to keep the numbers public-only even
+when a token is present. Without a token — or with one the API rejects, which prints a warning and
+carries on — the snapshot falls back to public data. The workflow passes `secrets.PROFILE_TOKEN`,
+so save a read-only token under that name; leaving the secret unset breaks nothing.
+
+**Private contributions are not a script setting** — they are a GitHub profile option. Turn on
+"Include private contributions on my profile" and both the calendar read here and GitHub's own graph
+will include them.
+
+**Is this realtime?** No — it is a **snapshot**, refreshed on a schedule. GitHub renders committed
+markdown, so the cards only move when the workflow commits new ones (up to ~24 h stale; tighten the
+cron for fresher, at the cost of a commit each run). A genuinely live number would need a
+third-party card service that renders on each view — that is what `STATS_SOURCE = "cards"` switches
+to. The contribution graph below the README is GitHub's own, so it is always current.
 
 ## How the README is assembled
 
@@ -51,8 +67,8 @@ refreshed" date changes daily, so a daily commit is expected.
 | --- | --- | --- |
 | Contact badges | shields.io | **Static** badges only — no third-party integration that can go stale |
 | Languages and tools | skillicons.dev | Slugs mapped from `data/core_tech.json`. Each slug must be probed alone: a resolved slug returns more than 256 bytes, an unresolved one exactly 256. **Podman has no icon** (nor do zsh, zed or archlinux), so it is skipped rather than rendered blank |
-| Learning sub-section | **our own tiles** | `write_learning_icons()` draws them — no icon set carries OCI, LLM, AI-workflow or PKI marks. Each `<img>` carries `title` (name — note) for a hover tooltip and `alt` for assistive tech; the whole section disappears when the list is empty |
-| GitHub stats | **our own cards** | `stats`, `langs`, `streak`, embedded with `<img width="100%">`. `STATS_SOURCE = "cards"` swaps in github-readme-stats + streak-stats instead |
+| Learning sub-section | **our own tiles** | `write_learning_icons()` draws them from `GLYPHS` (`cloud`, `chip`, `spark`, `server`, `key`, `chart`, `cube`, `pipeline`) — no icon set carries OCI, LLM, AI-workflow, PKI, tracing or GitOps marks. Each `<img>` carries `title` (name — note) for a hover tooltip and `alt` for assistive tech; the whole section disappears when the list is empty |
+| GitHub stats | **our own cards** | `stats`, `langs`, `streak`, embedded with `<img width="100%">`. Public-only or public+private, per the token above. `STATS_SOURCE = "cards"` swaps in github-readme-stats + streak-stats instead |
 | Wave sign-off | **our own card** | `footer.svg` |
 | Contribution graph | GitHub | Rendered natively below the README — nothing to do |
 

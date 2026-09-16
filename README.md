@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://mathewmusango.github.io/my-portfolio/">
-    <img src="https://skillicons.dev/icons?i=kubernetes,terraform,amazonwebservices,docker,linux,arch,bash,githubactions,gitlab,python,html,css,js,markdown,prometheus,grafana,obsidian,git,github&perline=10" alt="Kubernetes, Terraform, AWS, Docker, Linux, Arch Linux, Bash, GitHub Actions, GitLab, Python, HTML, CSS, JavaScript, MkDocs, Prometheus, Grafana, Obsidian, Git, GitHub" />
+    <img src="https://skillicons.dev/icons?i=kubernetes,terraform,amazonwebservices,docker,linux,arch,bash,githubactions,gitlab,python,html,css,js,markdown,prometheus,grafana,obsidian,elasticsearch,git,github&perline=10" alt="Kubernetes, Terraform, AWS, Docker, Linux, Arch Linux, Bash, GitHub Actions, GitLab, Python, HTML, CSS, JavaScript, MkDocs, Prometheus, Grafana, Obsidian, Elasticsearch, Git, GitHub" />
   </a>
 </p>
 
@@ -20,6 +20,9 @@
   <img src="assets/svg/icons/spark.svg" alt="AI-assisted engineering workflows" title="AI-assisted engineering workflows — agent skills, prompts and review" width="48" height="48">
   <img src="assets/svg/icons/server.svg" alt="Virtualisation (KVM/libvirt)" title="Virtualisation (KVM/libvirt) — self-hosted VM lab: storage, networking, snapshots" width="48" height="48">
   <img src="assets/svg/icons/key.svg" alt="PKI and private certificate authorities" title="PKI and private certificate authorities — issuing, trusting and rotating certificates end to end" width="48" height="48">
+  <img src="assets/svg/icons/chart.svg" alt="Observability depth — logging and tracing" title="Observability depth — logging and tracing — beyond metrics: OpenTelemetry, log pipelines, traces" width="48" height="48">
+  <img src="assets/svg/icons/cube.svg" alt="Terraform module design and testing" title="Terraform module design and testing — reusable modules, terraform test, policy checks" width="48" height="48">
+  <img src="assets/svg/icons/pipeline.svg" alt="GitOps and continuous delivery" title="GitOps and continuous delivery — declarative, pull-based delivery" width="48" height="48">
 </p>
 
 ## 📊 GitHub Stats
@@ -38,6 +41,6 @@
   <img src="assets/svg/footer.svg" alt="" width="100%">
 </p>
 
-<sub>Statistics, cards and this README are generated from GitHub's public API by
-<a href="https://github.com/mathewmusango/mathewmusango/blob/main/scripts/build_readme.py"><code>scripts/build_readme.py</code></a>
-— last refreshed 16 September 2026. Contribution activity below is rendered natively by GitHub.</sub>
+<sub>Cards and this README are generated from GitHub's API by
+<code>scripts/build_readme.py</code> on a daily schedule — last refreshed 16 September 2026.
+Contribution activity below is rendered natively by GitHub.</sub>
