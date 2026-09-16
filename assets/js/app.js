@@ -1,19 +1,29 @@
 /* ==========================================================================
    GitHub hub renderer.
-   Every number rendered here comes from window.PROFILE — the snapshot in
-   data/profile.js, refreshed by scripts/fetch_profile.py. The markup in
-   index.html is a static fallback: this script replaces the data panels.
+
+   Numbers are painted from window.PROFILE (the committed snapshot in
+   data/profile.js) and then, when the API answers, repainted from live data
+   fetched straight from GitHub's public REST API. The contribution calendar
+   has no public client-side endpoint, so it always comes from the snapshot —
+   the scheduled workflow refreshes it (scripts/fetch_profile.py).
    ========================================================================== */
 
 (() => {
   "use strict";
 
-  const data = window.PROFILE;
+  const SNAPSHOT = window.PROFILE;
 
-  if (!data) {
+  if (!SNAPSHOT) {
     console.warn("profile data missing — run: python3 scripts/fetch_profile.py");
     return;
   }
+
+  const API = "https://api.github.com";
+  const LIVE = true; // false → always render the committed snapshot
+  const CACHE_KEY = "github-profile:live";
+  const CACHE_TTL = 10 * 60 * 1000; // don't hammer the 60-req/hr anonymous limit
+  const MAX_LANGUAGE_REPOS = 8;
+  const MAX_PROJECTS = 8; // mirrors the fetch script's cap
 
   /* ------------------------------------------------------------ helpers -- */
 
@@ -74,7 +84,8 @@
     });
   }
 
-  function dayLong(date) {
+  function dayLong(value) {
+    const date = typeof value === "string" ? new Date(value) : value;
     return date.toLocaleDateString("en-GB", {
       day: "numeric",
       month: "long",
@@ -83,60 +94,48 @@
     });
   }
 
-  const render = (name) => document.querySelector('[data-render="' + name + '"]');
+  const host = (name) => document.querySelector('[data-render="' + name + '"]');
 
-  /* --------------------------------------------------------- static bits -- */
+  /* ------------------------------------------------------------- paints -- */
 
-  // The avatar's extension depends on what GitHub served, so the favicon is
-  // pointed at the same file the snapshot records.
-  const favicon = document.createElement("link");
-  favicon.rel = "icon";
-  favicon.href = data.user.avatar;
-  document.head.appendChild(favicon);
-
-  for (const node of document.querySelectorAll("[data-fill]")) {
-    const key = node.dataset.fill;
-    if (key === "name") node.textContent = data.user.name;
-    if (key === "handle") node.textContent = "@" + data.user.login;
-    if (key === "generated") {
-      node.textContent = dayLong(new Date(data.generated));
-      node.setAttribute("datetime", data.generated);
-    }
-  }
-
-  /* -------------------------------------------------------------- stats -- */
-
-  const statLabels = [
+  const STAT_LABELS = [
     ["repos", "Total repos"],
     ["stars", "All stars"],
     ["followers", "Followers"],
     ["years_active", "Years active"],
   ];
 
-  const statsHost = render("stats");
-  if (statsHost) {
-    for (const [key, label] of statLabels) {
-      statsHost.appendChild(
+  function paintStats(state) {
+    const target = host("stats");
+    if (!target) return;
+    target.replaceChildren();
+    for (const [key, label] of STAT_LABELS) {
+      target.appendChild(
         el("div", { class: "stat" }, [
-          el("span", { class: "stat__value", text: compact(data.stats[key]) }),
+          el("span", { class: "stat__value", text: compact(state.stats[key]) }),
           el("span", { class: "stat__label", text: label }),
         ])
       );
     }
   }
 
-  /* ------------------------------------------------------------- profile -- */
+  function paintProfile(state) {
+    const target = host("profile");
+    if (!target) return;
+    target.replaceChildren();
 
-  const profileHost = render("profile");
-  if (profileHost) {
-    const user = data.user;
+    const user = state.user;
     const rows = [];
 
     if (user.company) {
-      rows.push(el("div", { class: "profile__row" }, [icon(ICON.building), el("span", { text: user.company })]));
+      rows.push(
+        el("div", { class: "profile__row" }, [icon(ICON.building), el("span", { text: user.company })])
+      );
     }
     if (user.location) {
-      rows.push(el("div", { class: "profile__row" }, [icon(ICON.location), el("span", { text: user.location })]));
+      rows.push(
+        el("div", { class: "profile__row" }, [icon(ICON.location), el("span", { text: user.location })])
+      );
     }
     rows.push(
       el("div", { class: "profile__row" }, [
@@ -159,7 +158,7 @@
       ])
     );
 
-    profileHost.appendChild(
+    target.appendChild(
       el("img", {
         class: "profile__avatar",
         src: user.avatar,
@@ -169,43 +168,43 @@
         loading: "lazy",
       })
     );
-    profileHost.appendChild(el("h2", { class: "profile__name", text: user.name }));
-    profileHost.appendChild(el("p", { class: "profile__handle", text: "@" + user.login }));
+    target.appendChild(el("h2", { class: "profile__name", text: user.name }));
+    target.appendChild(el("p", { class: "profile__handle", text: "@" + user.login }));
     if (user.bio) {
-      profileHost.appendChild(el("p", { class: "profile__bio", text: user.bio }));
+      target.appendChild(el("p", { class: "profile__bio", text: user.bio }));
     }
-    profileHost.appendChild(
+    target.appendChild(
       el("div", { class: "profile__actions" }, [
-        (() => {
-          const link = el("a", {
-            class: "btn btn--primary",
-            href: user.profile_url,
-            rel: "me",
-            text: "Follow on GitHub",
-          });
-          return link;
-        })(),
+        el("a", {
+          class: "btn btn--primary",
+          href: user.profile_url,
+          rel: "me",
+          text: "Follow on GitHub",
+        }),
       ])
     );
-    profileHost.appendChild(el("div", { class: "profile__rows" }, rows));
+    target.appendChild(el("div", { class: "profile__rows" }, rows));
   }
 
-  /* ---------------------------------------------------------------- tech -- */
+  function paintTech(state) {
+    const target = host("tech");
+    if (!target) return;
+    target.replaceChildren();
 
-  const techHost = render("tech");
-  if (techHost) {
-    const head = el("div", { class: "panel__head" }, [
-      el("h2", { class: "panel__title", text: "Tech Stack & Languages" }),
-      el("span", { class: "panel__meta", text: "By bytes committed" }),
-    ]);
+    target.appendChild(
+      el("div", { class: "panel__head" }, [
+        el("h2", { class: "panel__title", text: "Tech Stack & Languages" }),
+        el("span", { class: "panel__meta", text: "By bytes committed" }),
+      ])
+    );
 
     const chips = el("ul", { class: "chips" });
-    for (const tech of data.core_tech) {
+    for (const tech of state.core_tech) {
       chips.appendChild(el("li", { class: "chip", text: tech }));
     }
 
     const bars = el("div", { class: "bars" });
-    for (const language of data.languages) {
+    for (const language of state.languages) {
       bars.appendChild(
         el("div", { class: "bar" }, [
           el("div", { class: "bar__row" }, [
@@ -222,24 +221,26 @@
       );
     }
 
-    techHost.appendChild(head);
-    techHost.appendChild(el("p", { class: "tech__label", text: "Core technologies" }));
-    techHost.appendChild(chips);
-    techHost.appendChild(el("p", { class: "tech__label", text: "Languages" }));
-    techHost.appendChild(bars);
+    target.appendChild(el("p", { class: "tech__label", text: "Core technologies" }));
+    target.appendChild(chips);
+    target.appendChild(el("p", { class: "tech__label", text: "Languages" }));
+    target.appendChild(bars);
   }
 
-  /* ------------------------------------------------------- contributions -- */
+  function paintContributions(state) {
+    const target = host("contributions");
+    if (!target) return;
+    target.replaceChildren();
 
-  const heatHost = render("contributions");
-  if (heatHost) {
-    const contrib = data.contributions;
+    const contrib = state.contributions;
+    if (!contrib) return;
+
     const start = utcDate(contrib.start);
     const lead = start.getUTCDay(); // 0 = Sunday
     const columns = Math.ceil((lead + contrib.days) / 7);
     const levels = contrib.levels.split("");
 
-    heatHost.appendChild(
+    target.appendChild(
       el("div", { class: "panel__head" }, [
         el("h2", { class: "panel__title", text: "Contributions" }),
         el("span", { class: "panel__meta", text: compact(contrib.total) + " in the last year" }),
@@ -292,19 +293,16 @@
     }
     legend.appendChild(el("span", { text: "More" }));
 
-    heatHost.appendChild(months);
-
-    const scroll = el("div", { class: "heat__scroll" }, [months, grid]);
-
-    heatHost.appendChild(scroll);
-    heatHost.appendChild(legend);
+    target.appendChild(el("div", { class: "heat__scroll" }, [months, grid]));
+    target.appendChild(legend);
   }
 
-  /* ----------------------------------------------------------- projects -- */
+  function paintProjects(state) {
+    const target = host("projects");
+    if (!target) return;
+    target.replaceChildren();
 
-  const projectHost = render("projects");
-  if (projectHost) {
-    projectHost.appendChild(
+    target.appendChild(
       el("div", { class: "projects__head" }, [
         el("h2", { class: "panel__title", text: "Notable Projects" }),
         el("span", { class: "panel__meta", text: "Most stars" }),
@@ -312,15 +310,7 @@
     );
 
     const grid = el("div", { class: "projects__grid" });
-    for (const project of data.projects) {
-      const title = el("h3", { class: "project__name" }, [
-        el("a", { href: project.url, text: project.name }),
-      ]);
-      const desc = el("p", {
-        class: "project__desc",
-        text: project.description || "No description yet.",
-      });
-
+    for (const project of state.projects) {
       const foot = el("div", { class: "project__foot" });
       if (project.language) {
         foot.appendChild(
@@ -330,24 +320,19 @@
           ])
         );
       }
-      foot.appendChild(
-        el("span", { class: "project__stat", title: compact(project.stars) + " stars" }, [
-          icon(ICON.star),
-          el("span", { text: compact(project.stars) }),
-        ])
-      );
-      foot.appendChild(
-        el("span", { class: "project__stat", title: compact(project.forks) + " forks" }, [
-          icon(ICON.fork),
-          el("span", { text: compact(project.forks) }),
-        ])
-      );
-      foot.appendChild(
-        el("span", { class: "project__stat", title: compact(project.issues) + " open issues" }, [
-          icon(ICON.issue),
-          el("span", { text: compact(project.issues) }),
-        ])
-      );
+      const counters = [
+        [ICON.star, project.stars, "stars"],
+        [ICON.fork, project.forks, "forks"],
+        [ICON.issue, project.issues, "open issues"],
+      ];
+      for (const [markup, value, label] of counters) {
+        foot.appendChild(
+          el("span", { class: "project__stat", title: compact(value) + " " + label }, [
+            icon(markup),
+            el("span", { text: compact(value) }),
+          ])
+        );
+      }
       if (project.homepage) {
         foot.appendChild(
           el("span", { class: "project__stat" }, [
@@ -357,9 +342,178 @@
         );
       }
 
-      grid.appendChild(el("div", { class: "project" }, [title, desc, foot]));
+      grid.appendChild(
+        el("div", { class: "project" }, [
+          el("h3", { class: "project__name" }, [el("a", { href: project.url, text: project.name })]),
+          el("p", {
+            class: "project__desc",
+            text: project.description || "No description yet.",
+          }),
+          foot,
+        ])
+      );
     }
 
-    projectHost.appendChild(grid);
+    target.appendChild(grid);
   }
+
+  function paint(state) {
+    for (const node of document.querySelectorAll("[data-fill]")) {
+      if (node.dataset.fill === "name") node.textContent = state.user.name;
+      if (node.dataset.fill === "handle") node.textContent = "@" + state.user.login;
+      if (node.dataset.fill === "generated") {
+        node.textContent = dayLong(state.generated);
+        node.setAttribute("datetime", state.generated);
+      }
+    }
+
+    paintStats(state);
+    paintProfile(state);
+    paintTech(state);
+    paintContributions(state);
+    paintProjects(state);
+  }
+
+  function setSource(state) {
+    const node = document.querySelector('[data-fill="source"]');
+    if (!node) return;
+    if (state === "live") node.textContent = "Numbers are live from GitHub’s public API.";
+    if (state === "snapshot") {
+      node.textContent =
+        "Numbers come from the committed snapshot — GitHub’s API was out of reach.";
+    }
+  }
+
+  /* --------------------------------------------------------- live data --- */
+
+  const cache = {
+    read() {
+      try {
+        const raw = window.localStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        const entry = JSON.parse(raw);
+        return Date.now() - entry.at < CACHE_TTL ? entry.data : null;
+      } catch (error) {
+        return null;
+      }
+    },
+    write(data) {
+      try {
+        window.localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), data }));
+      } catch (error) {
+        /* private mode or quota — caching is optional */
+      }
+    },
+  };
+
+  async function api(path, accept = "application/vnd.github+json") {
+    const response = await fetch(API + path, { headers: { Accept: accept } });
+    if (!response.ok) throw new Error("GitHub API " + response.status + " for " + path);
+    return response.json();
+  }
+
+  function yearsActive(createdAt) {
+    const created = utcDate(createdAt.slice(0, 10));
+    const today = new Date();
+    const thisYear = new Date(
+      Date.UTC(today.getUTCFullYear(), created.getUTCMonth(), created.getUTCDate())
+    );
+    return Math.max(1, today.getUTCFullYear() - created.getUTCFullYear() - (today < thisYear ? 1 : 0));
+  }
+
+  /** Fetch profile + repos, and per-repo language bytes, then reshape to the
+      same object the snapshot uses. */
+  async function fetchLive(login, snapshot) {
+    const [profile, repos] = await Promise.all([
+      api("/users/" + login),
+      api("/users/" + login + "/repos?per_page=100&sort=pushed"),
+    ]);
+
+    const own = repos.filter((repo) => !repo.fork);
+    const largest = own.slice().sort((a, b) => b.size - a.size).slice(0, MAX_LANGUAGE_REPOS);
+
+    const byteCounts = {};
+    const languageLists = await Promise.all(
+      largest.map((repo) =>
+        api("/repos/" + login + "/" + repo.name + "/languages").catch(() => ({}))
+      )
+    );
+    for (const list of languageLists) {
+      for (const [name, bytes] of Object.entries(list)) {
+        byteCounts[name] = (byteCounts[name] || 0) + bytes;
+      }
+    }
+
+    const totalBytes = Object.values(byteCounts).reduce((sum, bytes) => sum + bytes, 0) || 1;
+    const languages = Object.entries(byteCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([name, bytes]) => ({ name, pct: Math.round((bytes * 1000) / totalBytes) / 10 }));
+
+    const descriptions = new Map(snapshot.projects.map((p) => [p.name, p.description]));
+    const projects = own
+      .map((repo) => ({
+        name: repo.name,
+        url: repo.html_url,
+        description: repo.description || descriptions.get(repo.name) || "",
+        language: repo.language || "",
+        stars: repo.stargazers_count,
+        forks: repo.forks_count,
+        issues: repo.open_issues_count,
+        homepage: repo.homepage || "",
+        pushed_at: repo.pushed_at,
+      }))
+      .sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name))
+      .slice(0, MAX_PROJECTS);
+
+    return {
+      ...snapshot,
+      user: {
+        ...snapshot.user,
+        login: profile.login,
+        name: profile.name || profile.login,
+        bio: profile.bio || "",
+        company: profile.company || snapshot.user.company,
+        location: profile.location || "",
+        blog: profile.blog || "",
+        profile_url: profile.html_url,
+        joined: profile.created_at.slice(0, 10),
+        followers: profile.followers,
+        following: profile.following,
+        // the avatar stays the locally committed copy — no third-party request
+      },
+      stats: {
+        repos: own.length,
+        stars: own.reduce((sum, repo) => sum + repo.stargazers_count, 0),
+        followers: profile.followers,
+        years_active: yearsActive(profile.created_at),
+      },
+      languages,
+      projects,
+    };
+  }
+
+  /* -------------------------------------------------------------- boot --- */
+
+  paint(SNAPSHOT);
+
+  if (!LIVE || !window.fetch) {
+    setSource("snapshot");
+    return;
+  }
+
+  (async () => {
+    const login = SNAPSHOT.user.login;
+    try {
+      let live = cache.read();
+      if (!live) {
+        live = await fetchLive(login, SNAPSHOT);
+        cache.write(live);
+      }
+      paint(live);
+      setSource("live");
+    } catch (error) {
+      console.warn("live GitHub data unavailable, showing the snapshot:", error.message);
+      setSource("snapshot");
+    }
+  })();
 })();
