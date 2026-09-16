@@ -1,0 +1,45 @@
+name: "Profile: refresh README"
+
+# The profile README's cards are generated, so they go stale. This refreshes the
+# snapshot from GitHub's public API, redraws the cards and commits whatever
+# moved — no deploy step, because the README renders on the profile page itself.
+
+on:
+  schedule:
+    - cron: "17 4 * * *" # 04:17 UTC = 07:17 EAT
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-readme
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Refresh the snapshot
+        run: python3 scripts/fetch_profile.py
+
+      - name: Redraw the cards and the README
+        run: python3 scripts/build_readme.py
+
+      - name: Commit if it moved
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data assets/svg README.md
+          git commit -m "chore: refresh the profile cards"
+          git push
