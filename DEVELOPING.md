@@ -29,17 +29,29 @@ automatically — you click **Share to profile** on the repo. Neither applies he
 account, repo created fresh), but the second is worth remembering because the account itself
 dates from 2017.
 
-## Why the cards are SVG images
+## How the profile view is built
 
 A profile page accepts markdown and a sanitised subset of HTML — no CSS, no `<style>`, no
-scripts, no classes. The dark cards are therefore drawn as SVG at build time and committed, then
-embedded as images with `<img width="100%">`. That keeps the reference design's look (cards,
-green accents, language bars) without depending on a third-party card service that could
-disappear, rate-limit, or track visitors.
+scripts, no classes — so the layout is the familiar profile-README shape: greeting, intro
+bullets, contact badges, a project list, a skill-icon row, statistics cards, a wave sign-off.
 
-Text is positioned with an approximate Helvetica metric table in `build_readme.py`, so headings
-and the tagline can be centred and wrapped without pulling in a font library. Typefaces resolve
-in the visitor's browser, so nothing is embedded.
+| Piece | Rendered by | Notes |
+| --- | --- | --- |
+| Contact badges | shields.io | **Static** badges only (`img.shields.io/badge/...`) — no third-party integration that can go stale or rate-limit |
+| Languages and tools | skillicons.dev | One image, slugs mapped from the snapshot's `CORE_TECH` in `build_readme.py`; every slug is verified to resolve |
+| GitHub stats | **our own SVG cards** | `assets/svg/{stats,langs,streak}.svg`, drawn and committed, embedded with `<img width="100%">` |
+| Wave sign-off | **our own SVG** | `assets/svg/footer.svg` |
+| Contribution graph | GitHub | Rendered natively below the README — nothing to do |
+
+`STATS_SOURCE` in `build_readme.py` flips the stats section between our cards (`"own"`, the
+default) and the familiar third-party images (`"cards"` → github-readme-stats top-langs/stats
+plus streak-stats.demolab.com). Own cards mean no external service can break the page or
+rate-limit it; the third-party route is one constant away if the classic look is preferred.
+
+Text inside the SVG cards is positioned with an approximate Helvetica metric table, so headings
+and labels can be centred and wrapped without pulling in a font library; typefaces resolve in the
+visitor's browser. `build_readme.py` recomputes the contribution streaks from the calendar in the
+snapshot (a trailing zero-day counts as “today in progress”, as GitHub's own streak cards do).
 
 The contribution graph needs no work at all: GitHub renders its own contribution activity
 directly below the profile README.
@@ -49,9 +61,10 @@ directly below the profile README.
 | Path | What it is |
 | --- | --- |
 | `README.md` | **Generated** profile view — edit `scripts/build_readme.py`, not this file |
-| `assets/svg/hero.svg` | **Generated** banner — handle pill, name, tagline |
 | `assets/svg/stats.svg` | **Generated** four-cell stat row |
-| `assets/svg/tech.svg` | **Generated** core technologies + language bars |
+| `assets/svg/langs.svg` | **Generated** language bars |
+| `assets/svg/streak.svg` | **Generated** current / longest streak + contribution total |
+| `assets/svg/footer.svg` | **Generated** gradient wave sign-off |
 | `index.html` | Hub page shell — hero copy, panel placeholders, footer |
 | `assets/css/style.css` | Hub page styling (dark, GitHub-flavoured, responsive) |
 | `assets/js/app.js` | Hub page renderer — snapshot first, then live API |
@@ -85,9 +98,13 @@ since the API does not carry them:
 
 | Where | Constants |
 | --- | --- |
-| `fetch_profile.py` | `CORE_TECH` (chips), `COMPANY` (empty hides the row), `MAX_PROJECTS` |
-| `build_readme.py` | `USER`, `BRANCH`, `RAW` (image base), `SITE`, `LINKEDIN`, `EMAIL`, `GREEN*` palette |
+| `fetch_profile.py` | `CORE_TECH` (hub-page chips **and** the skill-icon slugs), `COMPANY` (empty hides the row), `MAX_PROJECTS` |
+| `build_readme.py` | `USER`, `BRANCH`, `RAW` (image base), `SITE`/`LINKEDIN`/`EMAIL`, `STATS_SOURCE`, and the editorial copy: `TAGLINE`, `BULLETS`, `EXTRA_SKILLS` |
 | `assets/js/app.js` | `MAX_PROJECTS`, `MAX_LANGUAGE_REPOS`, `LIVE` |
+
+Repo descriptions feed the project list straight from the API — `dotfiles` (“my-configs”) and
+`my-template` (“my-template”) are as thin as they are on GitHub, so improving those descriptions
+in the repo settings is the quickest content win.
 
 The daily workflow runs both scripts and commits whatever moved, so the cards — and the
 "last refreshed" line — stay current without a third-party service.

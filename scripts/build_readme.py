@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """Render the profile README and its cards.
 
-GitHub only accepts plain markdown on a profile page — no CSS, no scripts — so
-the dark cards in the reference design are drawn as SVG images generated here
-and committed alongside the README. Nothing is fetched from a third-party card
-service: every pixel comes from GitHub's public API (via fetch_profile.py) and
-this file.
+GitHub accepts plain markdown and a sanitised subset of HTML on a profile page —
+no CSS, no scripts — so the statistics cards are SVG images drawn here and
+committed, and the contact badges come from shields.io (static badges only: no
+third-party integration to go stale).
 
 Writes:
   README.md                 the profile view, rendered on github.com/<user>
-  assets/svg/hero.svg       banner — handle, name, tagline
   assets/svg/stats.svg      four-cell stat row
-  assets/svg/tech.svg       core technologies + language bars
+  assets/svg/langs.svg      language bars
+  assets/svg/streak.svg     current / longest streak + contribution total
+  assets/svg/footer.svg     gradient wave sign-off
 
 Run:
   python3 scripts/fetch_profile.py && python3 scripts/build_readme.py
@@ -32,6 +32,14 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 # anywhere the README is embedded. (Relative paths work in the repo view only.)
 RAW = f"https://raw.githubusercontent.com/{USER}/{USER}/{BRANCH}"
 
+SITE = "https://mathewmusango.github.io/my-portfolio/"
+LINKEDIN = "https://www.linkedin.com/in/mathew-musango/"
+EMAIL = "musangomathew@gmail.com"
+
+# "own"  → the committed SVG cards below (no external service, always up)
+# "cards" → the familiar github-readme-stats / streak-stats images (third-party)
+STATS_SOURCE = "own"
+
 BG = "#030303"
 SURFACE = "#0a0a0a"
 SURFACE_2 = "#111111"
@@ -46,19 +54,51 @@ GREEN_BTN = "#238636"
 FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
 MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
 
-SITE = "https://mathewmusango.github.io/my-portfolio/"
-LINKEDIN = "https://www.linkedin.com/in/mathew-musango/"
-EMAIL = "musangomathew@gmail.com"
+# Display name (as used by the hub page) → skillicons.dev slug.
+SKILL_SLUGS = {
+    "Kubernetes": "kubernetes",
+    "Terraform": "terraform",
+    "AWS": "amazonwebservices",
+    "Docker": "docker",
+    "Podman": "podman",
+    "Linux": "linux",
+    "GitHub Actions": "githubactions",
+    "Python": "python",
+    "Bash": "bash",
+    "MkDocs": "markdown",
+    "Prometheus": "prometheus",
+    "Grafana": "grafana",
+}
+# Always-true extras appended to the icon row.
+EXTRA_SKILLS = ["git", "github"]
+
+# Editorial copy — review these lines, they are the voice of the page.
+TAGLINE = (
+    "**Platform Engineering Manager** building and running cloud platforms — "
+    "Kubernetes, Terraform, AWS, CI/CD and observability — from Nairobi, Kenya 🇰🇪"
+)
+BULLETS = [
+    ("🔭", f"Currently building a tri-lingual cloud-resume platform on AWS — "
+            f"[S3 + CloudFront, Terraform, OIDC deploys]({SITE})"),
+    ("🌱", "Working in the open on **platform engineering**: reusable CI, "
+            "infrastructure as code, privacy-first observability"),
+    ("👯", "Open to collaboration on **cloud-native**, **platform engineering** and "
+            "**DevSecOps** projects — fork anything here"),
+    ("💬", "Ask me about **Kubernetes · Terraform · AWS · CI/CD · observability · "
+            "PCI-DSS compliance**"),
+    ("⚡", "I automate anything I have to do twice"),
+]
+
+
+def esc(text: str) -> str:
+    return html.escape(str(text), quote=True)
+
 
 # Advance widths (em) for Helvetica-ish metrics — enough to centre and wrap
 # text without pulling in a font library.
 NARROW = {" ": 0.278, ".": 0.278, ",": 0.278, ":": 0.278, ";": 0.278, "'": 0.191,
           "!": 0.278, "|": 0.222, "(": 0.333, ")": 0.333, "-": 0.333, "/": 0.278}
 WIDE = {"—": 1.0, "·": 0.35, "…": 0.9}
-
-
-def esc(text: str) -> str:
-    return html.escape(str(text), quote=True)
 
 
 def text_width(text: str, size: float) -> float:
@@ -90,7 +130,7 @@ def compact(value: int) -> str:
 
 
 def text(content, x, y, size, fill=FG, *, anchor="start", bold=False, mono=False,
-         spacing=None, opacity=None):
+         spacing=None):
     attributes = [
         f'x="{x:.1f}"',
         f'y="{y:.1f}"',
@@ -104,23 +144,7 @@ def text(content, x, y, size, fill=FG, *, anchor="start", bold=False, mono=False
         attributes.append('font-weight="700"')
     if spacing:
         attributes.append(f'letter-spacing="{spacing}"')
-    if opacity:
-        attributes.append(f'opacity="{opacity}"')
     return f'<text {" ".join(attributes)}>{esc(content)}</text>'
-
-
-def wrap(content: str, size: float, max_width: float) -> list[str]:
-    lines, current = [], ""
-    for word in content.split():
-        candidate = f"{current} {word}".strip()
-        if current and text_width(candidate, size) > max_width:
-            lines.append(current)
-            current = word
-        else:
-            current = candidate
-    if current:
-        lines.append(current)
-    return lines
 
 
 def svg(width: int, height: int, body: list[str], title: str, defs: str = "") -> str:
@@ -144,49 +168,11 @@ def card(x, y, width, height, radius=16, fill=SURFACE, stroke=BORDER):
     )
 
 
-def hero(snapshot: dict) -> str:
-    width, height = 1280, 300
-    user = snapshot["user"]
-    handle = f"GITHUB · @{user['login'].upper()}"
-    heading = f"Welcome to {user['name']}'s Hub"
-    tagline = user["bio"] or "Public repositories, languages and activity on GitHub."
-
-    pill_width = text_width(handle, 13) * 1.06 + 34
-    pill_x = (width - pill_width) / 2
-    lines = wrap(tagline, 19, 980)
-    tagline_start = 196
-
-    body = [
-        f'<rect width="{width}" height="{height}" fill="{BG}"/>',
-        f'<rect width="{width}" height="{height}" fill="url(#glow)"/>',
-        f'<rect x="{pill_x:.1f}" y="46" width="{pill_width:.1f}" height="32" rx="16" '
-        f'fill="{SURFACE_2}" stroke="{BORDER}"/>',
-        text(handle, width / 2, 67, 13, MUTED, anchor="middle", bold=True, spacing=1.6),
-        text(heading, width / 2, 148, 46, FG, anchor="middle", bold=True, spacing=-1),
-    ]
-    for index, line in enumerate(lines[:2]):
-        body.append(text(line, width / 2, tagline_start + index * 28, 19, MUTED, anchor="middle"))
-
-    defs = (
-        '<defs><radialGradient id="glow" cx="50%" cy="0%" r="72%">'
-        f'<stop offset="0%" stop-color="{GREEN}" stop-opacity="0.20"/>'
-        f'<stop offset="100%" stop-color="{GREEN}" stop-opacity="0"/>'
-        "</radialGradient></defs>"
-    )
-    return svg(width, height, body, f"{user['name']} — {tagline}", defs)
-
-
-def stats(snapshot: dict) -> str:
+def cell_row(cells: list[tuple[str, str]], title: str) -> str:
+    """The stat-row pattern: big value over a small uppercase label."""
     width, height = 1280, 150
     gap, margin, card_height, card_y = 20, 20, 110, 20
-    card_width = (width - margin * 2 - gap * 3) / 4
-
-    cells = [
-        (compact(snapshot["stats"]["repos"]), "Total repos"),
-        (compact(snapshot["stats"]["stars"]), "All stars"),
-        (compact(snapshot["stats"]["followers"]), "Followers"),
-        (str(snapshot["stats"]["years_active"]), "Years active"),
-    ]
+    card_width = (width - margin * 2 - gap * (len(cells) - 1)) / len(cells)
 
     body = [f'<rect width="{width}" height="{height}" fill="{BG}"/>']
     for index, (value, label) in enumerate(cells):
@@ -196,35 +182,17 @@ def stats(snapshot: dict) -> str:
         body.append(text(value, centre, card_y + 58, 38, FG, anchor="middle", bold=True))
         body.append(text(label.upper(), centre, card_y + 88, 12, MUTED, anchor="middle",
                          bold=True, spacing=1.6))
-    return svg(width, height, body, " ".join(f"{v} {l.lower()}" for v, l in cells))
+    return svg(width, height, body, title)
 
 
-def tech(snapshot: dict) -> str:
+def langs_card(languages: list[dict]) -> str:
     width, margin = 1280, 20
     inner_x = margin + 28
     inner_right = width - margin - 28
     inner_width = inner_right - inner_x
 
-    chip_size, chip_height, chip_pad, chip_gap = 13, 30, 12, 8
-    languages = snapshot["languages"][:6]
-
-    # Lay the chips out first so the card height can be computed.
-    chips, x, y = [], inner_x, 120
-    for item in snapshot["core_tech"]:
-        chip_width = text_width(item, chip_size) + chip_pad * 2
-        if x + chip_width > inner_right and x > inner_x:
-            x, y = inner_x, y + chip_height + chip_gap
-        chips.append(
-            f'<rect x="{x:.1f}" y="{y}" width="{chip_width:.1f}" height="{chip_height}" '
-            f'rx="{chip_height / 2}" fill="{SURFACE_2}" stroke="{BORDER}"/>'
-        )
-        chips.append(text(item, x + chip_pad, y + chip_height / 2 + chip_size * 0.36,
-                          chip_size, MUTED))
-        x += chip_width + chip_gap
-
-    bars_y = y + chip_height + 44
-    bars, y = [], bars_y
-    for language in languages:
+    bars, y = [], 118
+    for language in languages[:6]:
         bars.append(text(language["name"], inner_x, y, 15, FG, bold=True))
         bars.append(text(f"{language['pct']:.1f}%", inner_right, y, 13, MUTED,
                          anchor="end", mono=True))
@@ -235,15 +203,13 @@ def tech(snapshot: dict) -> str:
                     f'rx="3" fill="url(#bar)"/>')
         y += 46
 
-    height = int(y + 6)
+    height = int(y + 34)
     body = [
         f'<rect width="{width}" height="{height}" fill="{BG}"/>',
         card(margin, margin, width - margin * 2, height - margin * 2),
-        text("Tech Stack & Languages", inner_x, 68, 22, FG, bold=True),
-        text("By bytes committed", inner_right, 68, 14, MUTED, anchor="end"),
-        text("CORE TECHNOLOGIES", inner_x, 104, 11, FAINT, bold=True, spacing=1.6),
-        *chips,
-        text("LANGUAGES", inner_x, bars_y - 22, 11, FAINT, bold=True, spacing=1.6),
+        text("Most used languages", inner_x, 68, 22, FG, bold=True),
+        text("By bytes committed across public repositories", inner_right, 68, 14, MUTED,
+             anchor="end"),
         *bars,
     ]
     defs = (
@@ -252,58 +218,172 @@ def tech(snapshot: dict) -> str:
         f'<stop offset="100%" stop-color="{GREEN_BRIGHT}"/>'
         "</linearGradient></defs>"
     )
-    return svg(width, height, body, "Tech stack and languages", defs)
+    return svg(width, height, body, "Most used languages", defs)
 
 
-def projects_table(snapshot: dict) -> str:
-    rows = [
-        "| Repository | About | Stack | ★ |",
-        "| :--- | :--- | :--- | ---: |",
+def wave(y: float, amplitude: float) -> str:
+    return (
+        f'M0,{y} C170,{y - amplitude} 320,{y + amplitude} 480,{y} '
+        f'C640,{y - amplitude} 790,{y + amplitude} 960,{y} '
+        f'C1120,{y - amplitude} 1180,{y + amplitude} 1280,{y} '
+        "L1280,120 L0,120 Z"
+    )
+
+
+def footer_card() -> str:
+    width, height = 1280, 120
+    defs = (
+        '<defs><linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="0%">'
+        f'<stop offset="0%" stop-color="{GREEN_BTN}"/>'
+        f'<stop offset="100%" stop-color="{GREEN_BRIGHT}"/>'
+        "</linearGradient></defs>"
+    )
+    body = [
+        f'<rect width="{width}" height="{height}" fill="{BG}"/>',
+        f'<path d="{wave(74, 22)}" fill="{GREEN}" opacity="0.28"/>',
+        f'<path d="{wave(92, 18)}" fill="url(#wave)" opacity="0.85"/>',
     ]
-    for project in snapshot["projects"]:
-        about = (project["description"] or "—").replace("|", "\\|")
-        if len(about) > 150:
-            about = about[:147].rstrip() + "…"
-        stack = f"`{project['language']}`" if project["language"] else "—"
-        rows.append(
-            f"| **[{project['name']}]({project['url']})** | {about} | {stack} | "
-            f"{compact(project['stars'])} |"
-        )
-    return "\n".join(rows)
+    return svg(width, height, body, "Mathew Musango Peter", defs)
 
 
-def readme(snapshot: dict) -> str:
-    user = snapshot["user"]
-    refreshed = dt.date.fromisoformat(snapshot["generated"][:10]).strftime("%d %B %Y")
-    images = "\n".join(
+def streaks(counts: list[int]) -> tuple[int, int]:
+    """(current, longest) runs of consecutive days with contributions.
+
+    A trailing zero is treated as today still in progress rather than the end of
+    the streak, which is how GitHub's own streak cards behave.
+    """
+    longest = current = 0
+    for count in counts:
+        current = current + 1 if count > 0 else 0
+        longest = max(longest, current)
+
+    tail = counts[:-1] if counts and counts[-1] == 0 else counts
+    trailing = 0
+    for count in reversed(tail):
+        if count <= 0:
+            break
+        trailing += 1
+    return trailing, longest
+
+
+def skill_row(core_tech: list[str]) -> str:
+    slugs = [SKILL_SLUGS[name] for name in core_tech if name in SKILL_SLUGS] + EXTRA_SKILLS
+    display = {slug: name for name, slug in SKILL_SLUGS.items()}
+    display.update({"git": "Git", "github": "GitHub"})
+    alt = ", ".join(display.get(slug, slug) for slug in slugs)
+    return (
+        f'<p align="center">\n'
+        f'  <a href="{SITE}">\n'
+        f'    <img src="https://skillicons.dev/icons?i={",".join(slugs)}&perline=10" '
+        f'alt="{esc(alt)}" />\n  </a>\n</p>'
+    )
+
+
+def badges() -> str:
+    def badge(label, message, colour, logo, href, alt):
+        url = (f"https://img.shields.io/badge/{label}-{message}-{colour}"
+               f"?style=for-the-badge&logo={logo}&logoColor=white")
+        return f'<a href="{href}" title="{alt}"><img src="{url}" alt="{alt}" height="30" align="center" /></a>'
+
+    return " ".join(
         [
-            f'<p align="center">\n  <img src="{RAW}/assets/svg/hero.svg" '
-            f'alt="Welcome to {esc(user["name"])}\'s Hub" width="100%">\n</p>',
-            f'<p align="center">\n  <img src="{RAW}/assets/svg/stats.svg" '
-            f'alt="{snapshot["stats"]["repos"]} public repos, {snapshot["stats"]["stars"]} stars, '
-            f'{snapshot["stats"]["followers"]} followers, '
-            f'{snapshot["stats"]["years_active"]} years active" width="100%">\n</p>',
-            f'<p align="center">\n  <img src="{RAW}/assets/svg/tech.svg" '
-            f'alt="Tech stack and languages" width="100%">\n</p>',
+            badge("Website", "mathewmusango.github.io", "26a641", "googlechrome", SITE,
+                  "Portfolio"),
+            badge("LinkedIn", "Connect", "0077B5", "linkedin", LINKEDIN, "LinkedIn"),
+            badge("Email", EMAIL, "D14836", "gmail", f"mailto:{EMAIL}", "Email"),
+            badge("GitHub", USER, "181717", "github", f"https://github.com/{USER}",
+                  "GitHub profile"),
         ]
     )
 
+
+def project_list(projects: list[dict]) -> str:
+    lines = []
+    for index, project in enumerate(projects, start=1):
+        about = (project["description"] or "").strip().rstrip(".")
+        if len(about) > 190:
+            about = about[:187].rstrip() + "…"
+        entry = f"{index}. **[{project['name']}]({project['url']})**"
+        if about:
+            entry += f" — {about}"
+        if project["language"]:
+            entry += f" · `{project['language']}`"
+        if project["stars"]:
+            entry += f" · ⭐ {compact(project['stars'])}"
+        if project["homepage"]:
+            entry += f" · [live]({project['homepage']})"
+        lines.append(entry)
+    return "\n".join(lines)
+
+
+def own_stats(snapshot: dict) -> str:
+    images = [
+        f'{RAW}/assets/svg/stats.svg',
+        f'{RAW}/assets/svg/langs.svg',
+        f'{RAW}/assets/svg/streak.svg',
+    ]
+    alts = [
+        f"{snapshot['stats']['repos']} public repositories, {snapshot['stats']['stars']} stars, "
+        f"{snapshot['stats']['followers']} followers, {snapshot['stats']['years_active']} years active",
+        "Most used languages by bytes committed",
+        "Current streak, longest streak and contributions in the last year",
+    ]
+    return "\n".join(
+        f'<p align="center">\n  <img src="{src}" alt="{esc(alt)}" width="100%">\n</p>'
+        for src, alt in zip(images, alts)
+    )
+
+
+def third_party_stats() -> str:
+    theme = "theme=github_dark&hide_border=true"
+    return "\n".join(
+        [
+            f'<p align="center">\n  <a href="https://github.com/{USER}">\n'
+            f'    <img src="https://github-readme-stats.vercel.app/api?username={USER}'
+            f'&show_icons=true&{theme}" alt="GitHub stats" />\n  </a>\n</p>',
+            f'<p align="center">\n  <a href="https://github.com/{USER}">\n'
+            f'    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={USER}'
+            f'&layout=compact&{theme}" alt="Top languages" />\n  </a>\n</p>',
+            f'<p align="center">\n  <a href="https://github.com/{USER}">\n'
+            f'    <img src="https://streak-stats.demolab.com/?user={USER}&theme=github-dark'
+            f'&hide_border=true" alt="Contribution streak" />\n  </a>\n</p>',
+        ]
+    )
+
+
+def readme(snapshot: dict) -> str:
+    refreshed = dt.date.fromisoformat(snapshot["generated"][:10]).strftime("%d %B %Y")
+    bullets = "\n".join(f"- {emoji} {line}" for emoji, line in BULLETS)
+    stats = own_stats(snapshot) if STATS_SOURCE == "own" else third_party_stats()
+
     return f"""<!-- Generated by scripts/build_readme.py — edit the script, not this file. -->
 
-{images}
+# Hi there, I'm {snapshot['user']['name']} 👋
 
-## Notable projects <sub>· most stars first</sub>
+{TAGLINE}
 
-{projects_table(snapshot)}
+{bullets}
+- 📫 Reach me: {badges()}
 
-## Elsewhere
+## 🚀 Featured Projects
 
-[Portfolio]({SITE}) · [LinkedIn]({LINKEDIN}) · [Email](mailto:{EMAIL}) · [All repositories]({user['profile_url']}?tab=repositories)
+{project_list(snapshot['projects'])}
 
-<sub>Synced from GitHub's public API — last refreshed {refreshed}. Statistics, cards and this
-README are generated by <a href="https://github.com/{USER}/{USER}/blob/{BRANCH}/scripts/build_readme.py">
-<code>scripts/build_readme.py</code></a>; no third-party card services involved. Contribution
-activity below is rendered natively by GitHub.</sub>
+## 🛠️ Languages and Tools
+
+{skill_row(snapshot['core_tech'])}
+
+## 📊 GitHub Stats
+
+{stats}
+
+<p align="center">
+  <img src="{RAW}/assets/svg/footer.svg" alt="" width="100%">
+</p>
+
+<sub>Statistics, cards and this README are generated from GitHub's public API by
+<a href="https://github.com/{USER}/{USER}/blob/{BRANCH}/scripts/build_readme.py"><code>scripts/build_readme.py</code></a>
+— last refreshed {refreshed}. Contribution activity below is rendered natively by GitHub.</sub>
 """
 
 
@@ -312,13 +392,43 @@ def main() -> None:
 
     svg_dir = ROOT / "assets" / "svg"
     svg_dir.mkdir(parents=True, exist_ok=True)
-    (svg_dir / "hero.svg").write_text(hero(snapshot), encoding="utf-8")
-    (svg_dir / "stats.svg").write_text(stats(snapshot), encoding="utf-8")
-    (svg_dir / "tech.svg").write_text(tech(snapshot), encoding="utf-8")
+
+    # Cards this script no longer renders (it replaced the banner and the
+    # combined tech card with a skill-icon row and a languages card).
+    for stale in ("hero.svg", "tech.svg"):
+        (svg_dir / stale).unlink(missing_ok=True)
+
+    current, longest = streaks(snapshot["contributions"]["counts"])
+    (svg_dir / "stats.svg").write_text(
+        cell_row(
+            [
+                (compact(snapshot["stats"]["repos"]), "Total repos"),
+                (compact(snapshot["stats"]["stars"]), "All stars"),
+                (compact(snapshot["stats"]["followers"]), "Followers"),
+                (str(snapshot["stats"]["years_active"]), "Years active"),
+            ],
+            "Repositories, stars, followers and years active",
+        ),
+        encoding="utf-8",
+    )
+    (svg_dir / "langs.svg").write_text(langs_card(snapshot["languages"]), encoding="utf-8")
+    (svg_dir / "streak.svg").write_text(
+        cell_row(
+            [
+                (f"{current}d", "Current streak"),
+                (f"{longest}d", "Longest streak"),
+                (compact(snapshot["contributions"]["total"]), "Contributions"),
+            ],
+            "Contribution streaks",
+        ),
+        encoding="utf-8",
+    )
+    (svg_dir / "footer.svg").write_text(footer_card(), encoding="utf-8")
     (ROOT / "README.md").write_text(readme(snapshot), encoding="utf-8")
 
-    print("wrote README.md")
-    for name in ("hero", "stats", "tech"):
+    print(f"wrote README.md (stats source: {STATS_SOURCE})")
+    print(f"streaks: current {current}d, longest {longest}d")
+    for name in ("stats", "langs", "streak", "footer"):
         path = svg_dir / f"{name}.svg"
         print(f"wrote assets/svg/{name}.svg  {path.stat().st_size / 1024:.1f} KiB")
 
