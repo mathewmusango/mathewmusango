@@ -1,0 +1,7 @@
+# Data snapshots (data/profile.json, data/profile.js) and the avatar are
+# committed on purpose — the page renders from them with no build step and no
+# runtime API call. Refresh them with scripts/fetch_profile.py, then commit.
+
+__pycache__/
+*.py[cod]
+.DS_Store
