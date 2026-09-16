@@ -1,0 +1,19 @@
+name: checks
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  yaml:
+    uses: mathewmusango/my-workflows/.github/workflows/checks-yaml.yml@60bbf7e773dae68e8a4884690def52a8c63f20cf # v2026.0916.0520
+  markdown:
+    uses: mathewmusango/my-workflows/.github/workflows/checks-markdown.yml@00bfbcec2e1ebf9662ee7668315aab6af5e66cf7 # v2026.0916.2112
+  secrets:
+    uses: mathewmusango/my-workflows/.github/workflows/security-secrets.yml@60bbf7e773dae68e8a4884690def52a8c63f20cf # v2026.0916.0520
+  deps:
+    uses: mathewmusango/my-workflows/.github/workflows/security-deps.yml@60bbf7e773dae68e8a4884690def52a8c63f20cf # v2026.0916.0520

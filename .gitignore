@@ -1,6 +1,41 @@
-# Nothing here is ignored on purpose: the README and its generated cards are
-# committed, because that is exactly what makes the profile page render.
+# What GitHub needs in order to render the profile — the allowlist. Everything not listed
+# below is local-only, and nothing below can break the page, because the page only ever reads
+# these: README.md · assets/svg/header.svg · divider.svg · footer.svg · assets/svg/panels/*.svg ·
+# assets/svg/icons/cloud.svg, chip.svg, spark.svg · assets/svg/brands/amazonaws.svg.
+# (The badges and glyphs under shields.io / cdn.simpleicons.org are fetched from those hosts.)
+#
+# So: retiring a card, or adding a glyph file, means editing that list too.
 
 __pycache__/
 *.py[cod]
 .DS_Store
+
+# Working files — kept on disk, deliberately not in the remote:
+#   .preview/            contact sheets rendered to check the cards by eye
+#   DEVELOPING.md        how the generator works, for whoever picks this up next
+#   TODO.md              the backlog of technologies not on the page yet
+#   data/                the curated lists. The one thing he does not want public
+#   scripts/             the generator. The page does not need it either — README.md and
+#                        every card are committed, so the profile renders without it
+#   assets/svg/brands/README.md
+#                        the note on why amazonaws.svg is a local mark: prose, not a card.
+#                        The mark it documents stays.
+#
+# Two paths are NOT render inputs but are deliberately kept: `.github/` (a workflow only runs
+# when it is committed, so ignoring it would silently disable every check — gitleaks,
+# actionlint, dependency review, Dependabot) and `LICENSE` (legal standing for a public repo).
+#
+# Everything here stays in the working tree, so `python3 scripts/build_readme.py` still runs
+# locally; only the remote goes without. Note that **gitignore does not untrack a path that
+# is already tracked** — it only stops a new one from being added — so each entry was also
+# `git rm --cached`'d, which is how any of them comes back.
+#
+# The cost: nothing on the remote can rebuild the page, so "run `python3 scripts/build_readme.py`
+# and commit" is a local habit and no CI check can catch a stale README. The generator is
+# recoverable from git history at 18b0319.
+.preview/
+DEVELOPING.md
+TODO.md
+data/
+scripts/
+assets/svg/brands/README.md
