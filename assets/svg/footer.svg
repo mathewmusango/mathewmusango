@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="120" viewBox="0 0 1280 120" role="img" aria-label="Mathew Musango Peter">
 <title>Mathew Musango Peter</title>
-<defs><linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#238636"/><stop offset="100%" stop-color="#39d353"/></linearGradient></defs>
+<defs><linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00695c"/><stop offset="100%" stop-color="#4db6ac"/></linearGradient></defs>
 <rect width="1280" height="120" fill="#030303"/>
-<path d="M0,74 C170,52 320,96 480,74 C640,52 790,96 960,74 C1120,52 1180,96 1280,74 L1280,120 L0,120 Z" fill="#26a641" opacity="0.28"/>
+<path d="M0,74 C170,52 320,96 480,74 C640,52 790,96 960,74 C1120,52 1180,96 1280,74 L1280,120 L0,120 Z" fill="#00897b" opacity="0.28"/>
 <path d="M0,92 C170,74 320,110 480,92 C640,74 790,110 960,92 C1120,74 1180,110 1280,92 L1280,120 L0,120 Z" fill="url(#wave)" opacity="0.85"/>
 </svg>
