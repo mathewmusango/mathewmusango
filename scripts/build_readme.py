@@ -34,13 +34,15 @@ RAW = f"https://raw.githubusercontent.com/{USER}/{USER}/{BRANCH}"
 
 SITE = "https://mathewmusango.github.io/my-portfolio/"
 LINKEDIN = "https://www.linkedin.com/in/mathew-musango/"
-ORCID_ID = "0009-0001-1534-4389"
-ORCID = f"https://orcid.org/{ORCID_ID}"
 EMAIL = "musangomathew@gmail.com"
 
 # "own"  → the committed SVG cards below (no external service, always up)
 # "cards" → the familiar github-readme-stats / streak-stats images (third-party)
 STATS_SOURCE = "own"
+
+# Editorial list shared with fetch_profile.py and the hub page: one committed
+# source of truth, so the icon row can change without an API round trip.
+CORE_TECH = json.loads((ROOT / "data" / "core_tech.json").read_text(encoding="utf-8"))
 
 BG = "#030303"
 SURFACE = "#0a0a0a"
@@ -56,17 +58,25 @@ GREEN_BTN = "#238636"
 FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
 MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
 
-# Display name (as used by the hub page) → skillicons.dev slug.
+# Display name (as used by the hub page) → skillicons.dev slug. Names absent from
+# this map simply don't appear in the icon row: skillicons has no Podman icon (and
+# none for zsh, zed or archlinux either), and an unknown slug renders blank — so
+# every slug added here must be probed alone first (a resolved slug returns more
+# than 256 bytes; an unresolved one returns exactly 256).
 SKILL_SLUGS = {
     "Kubernetes": "kubernetes",
     "Terraform": "terraform",
     "AWS": "amazonwebservices",
     "Docker": "docker",
-    "Podman": "podman",
     "Linux": "linux",
-    "GitHub Actions": "githubactions",
-    "Python": "python",
+    "Arch Linux": "arch",
     "Bash": "bash",
+    "GitHub Actions": "githubactions",
+    "GitLab": "gitlab",
+    "Python": "python",
+    "HTML": "html",
+    "CSS": "css",
+    "JavaScript": "js",
     "MkDocs": "markdown",
     "Prometheus": "prometheus",
     "Grafana": "grafana",
@@ -275,10 +285,6 @@ def badges() -> str:
             badge("Website", "mathewmusango.github.io", "26a641", "googlechrome", SITE,
                   "Portfolio"),
             badge("LinkedIn", "Connect", "0077B5", "linkedin", LINKEDIN, "LinkedIn"),
-            # shields.io treats "-" in a badge path as a separator, so the hyphens
-            # in an ORCID iD have to be doubled to survive.
-            badge("ORCID", ORCID_ID.replace("-", "--"), "A6CE39", "orcid", ORCID,
-                  "ORCID iD"),
             badge("Email", EMAIL, "D14836", "gmail", f"mailto:{EMAIL}", "Email"),
             badge("GitHub", USER, "181717", "github", f"https://github.com/{USER}",
                   "GitHub profile"),
@@ -333,7 +339,7 @@ def readme(snapshot: dict) -> str:
 
 ## 🛠️ Languages and Tools
 
-{skill_row(snapshot['core_tech'])}
+{skill_row(CORE_TECH)}
 
 ## 📊 GitHub Stats
 

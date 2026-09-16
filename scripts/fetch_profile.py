@@ -29,25 +29,17 @@ API = "https://api.github.com"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 UA = {"User-Agent": "mathewmusango-profile-hub", "Accept": "application/vnd.github+json"}
 
-# Editorial values the GitHub API does not carry — edit freely.
-CORE_TECH = [
-    "Kubernetes",
-    "Terraform",
-    "AWS",
-    "Docker",
-    "Podman",
-    "Linux",
-    "GitHub Actions",
-    "Python",
-    "Bash",
-    "MkDocs",
-    "Prometheus",
-    "Grafana",
-]
+# Editorial values the GitHub API does not carry live in committed files, so
+# they can change without an API round trip (build_readme.py reads them too).
+CORE_TECH_FILE = ROOT / "data" / "core_tech.json"
 # Shown as the "Company" row of the profile card; empty hides the row.
 COMPANY = ""
 
 MAX_PROJECTS = 8
+
+
+def core_tech() -> list[str]:
+    return json.loads(CORE_TECH_FILE.read_text(encoding="utf-8"))
 
 
 def get_bytes(url: str, accept: str = "application/vnd.github+json") -> bytes:
@@ -202,7 +194,7 @@ def build_snapshot() -> dict:
             "years_active": years_active,
         },
         "languages": top_languages,
-        "core_tech": CORE_TECH,
+        "core_tech": core_tech(),
         "projects": projects,
         "contributions": contributions_calendar(),
     }

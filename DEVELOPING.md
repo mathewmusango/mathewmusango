@@ -44,7 +44,7 @@ the snapshot and still drives the hub page.
 | Piece | Rendered by | Notes |
 | --- | --- | --- |
 | Contact badges | shields.io | **Static** badges only (`img.shields.io/badge/...`) — no third-party integration that can go stale or rate-limit |
-| Languages and tools | skillicons.dev | One image, slugs mapped from the snapshot's `CORE_TECH` in `build_readme.py`; every slug is verified to resolve |
+| Languages and tools | skillicons.dev | One image, slugs mapped from `data/core_tech.json` in `build_readme.py`. Each slug is probed alone: a resolved slug returns more than 256 bytes, an unresolved one exactly 256. **Podman has no icon** (nor do zsh, zed or archlinux), so it is skipped rather than rendered blank |
 | GitHub stats | **our own SVG cards** | `assets/svg/{stats,langs,streak}.svg`, drawn and committed, embedded with `<img width="100%">` |
 | Wave sign-off | **our own SVG** | `assets/svg/footer.svg` |
 | Contribution graph | GitHub | Rendered natively below the README — nothing to do |
@@ -102,11 +102,16 @@ python3 scripts/fetch_profile.py && python3 scripts/build_readme.py
 `build_readme.py` turns that snapshot into `README.md` and the three cards. Editorial values,
 since the API does not carry them:
 
-| Where | Constants |
+| Where | Contents |
 | --- | --- |
-| `fetch_profile.py` | `CORE_TECH` (hub-page chips **and** the skill-icon slugs), `COMPANY` (empty hides the row), `MAX_PROJECTS` |
-| `build_readme.py` | `USER`, `BRANCH`, `RAW` (image base), `SITE`/`LINKEDIN`/`EMAIL`, `STATS_SOURCE`, and the editorial copy: `TAGLINE`, `BULLETS`, `EXTRA_SKILLS` |
+| `data/core_tech.json` | The technology list — the hub page's chips **and** the skill-icon slugs |
+| `fetch_profile.py` | `COMPANY` (empty hides the row), `MAX_PROJECTS` |
+| `build_readme.py` | `USER`, `BRANCH`, `RAW` (image base), `SITE`/`LINKEDIN`/`EMAIL`, `STATS_SOURCE`, `EXTRA_SKILLS` |
 | `assets/js/app.js` | `MAX_PROJECTS`, `MAX_LANGUAGE_REPOS`, `LIVE` |
+
+Editorial values sit in committed files rather than inside the API snapshot, so changing them
+never needs a network round trip (the list used to live in `fetch_profile.py` and only reached the
+README after a successful fetch — which a rate-limited API made impossible).
 
 Repo descriptions no longer appear in the README (the projects list was removed), so the thin
 `dotfiles` (“my-configs”) and `my-template` (“my-template”) descriptions only affect the hub page
