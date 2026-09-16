@@ -46,6 +46,7 @@ the snapshot and still drives the hub page.
 | Contact badges | shields.io | **Static** badges only (`img.shields.io/badge/...`) — no third-party integration that can go stale or rate-limit |
 | Languages and tools | skillicons.dev | One image, slugs mapped from `data/core_tech.json` in `build_readme.py`. Each slug is probed alone: a resolved slug returns more than 256 bytes, an unresolved one exactly 256. **Podman has no icon** (nor do zsh, zed or archlinux), so it is skipped rather than rendered blank |
 | GitHub stats | **our own SVG cards** | `assets/svg/{stats,langs,streak}.svg`, drawn and committed, embedded with `<img width="100%">` |
+| Learning sub-section | Markdown, from `data/learning.json` | `### 📚 Learning` inside the Languages and Tools section — one bullet per entry; the heading disappears when the list is empty |
 | Wave sign-off | **our own SVG** | `assets/svg/footer.svg` |
 | Contribution graph | GitHub | Rendered natively below the README — nothing to do |
 
@@ -105,6 +106,7 @@ since the API does not carry them:
 | Where | Contents |
 | --- | --- |
 | `data/core_tech.json` | The technology list — the hub page's chips **and** the skill-icon slugs |
+| `data/learning.json` | The bullets under **Learning** (below the tools row) |
 | `fetch_profile.py` | `COMPANY` (empty hides the row), `MAX_PROJECTS` |
 | `build_readme.py` | `USER`, `BRANCH`, `RAW` (image base), `SITE`/`LINKEDIN`/`EMAIL`, `STATS_SOURCE`, `EXTRA_SKILLS` |
 | `assets/js/app.js` | `MAX_PROJECTS`, `MAX_LANGUAGE_REPOS`, `LIVE` |

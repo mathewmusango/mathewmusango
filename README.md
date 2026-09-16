@@ -12,6 +12,13 @@
   </a>
 </p>
 
+### 📚 Learning
+
+- Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS
+- Local LLM infrastructure — hardware sizing, runtimes and serving
+- AI-assisted engineering workflows — agent skills, prompts and review
+- Security operations and SIEM — Wazuh stack, detection and response
+
 ## 📊 GitHub Stats
 
 <p align="center">
