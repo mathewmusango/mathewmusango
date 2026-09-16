@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/svg/panels/languages-and-tools.svg" alt="Languages and Tools" width="100%">
+  <img src="assets/svg/panels/tools.svg" alt="Tools" width="100%">
 </p>
 
 <p align="center">
@@ -44,6 +44,20 @@
   </picture>
   <img src="https://cdn.simpleicons.org/zsh" alt="Zsh" title="Zsh" width="30" height="30">
   <img src="https://cdn.simpleicons.org/gnubash/2b5e14" alt="Bash" title="Bash" width="30" height="30">
+  <img src="https://cdn.simpleicons.org/prometheus" alt="Prometheus" title="Prometheus" width="30" height="30">
+  <img src="https://cdn.simpleicons.org/grafana" alt="Grafana" title="Grafana" width="30" height="30">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/elasticsearch/8cb2bf">
+    <img src="https://cdn.simpleicons.org/elasticsearch" alt="Elasticsearch" title="Elasticsearch" width="30" height="30">
+  </picture>
+  <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30">
+</p>
+
+<p align="center">
+  <img src="assets/svg/panels/languages.svg" alt="Languages" width="100%">
+</p>
+
+<p align="center">
   <img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30">
   <img src="https://cdn.simpleicons.org/html5" alt="HTML" title="HTML" width="30" height="30">
   <picture>
@@ -55,13 +69,6 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/markdown/8c8c8c">
     <img src="https://cdn.simpleicons.org/markdown" alt="MkDocs" title="MkDocs" width="30" height="30">
   </picture>
-  <img src="https://cdn.simpleicons.org/prometheus" alt="Prometheus" title="Prometheus" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/grafana" alt="Grafana" title="Grafana" width="30" height="30">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/elasticsearch/8cb2bf">
-    <img src="https://cdn.simpleicons.org/elasticsearch" alt="Elasticsearch" title="Elasticsearch" width="30" height="30">
-  </picture>
-  <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30">
 </p>
 
 <p align="center">
