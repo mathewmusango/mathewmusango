@@ -25,7 +25,7 @@
     "icon": "key"
   },
   {
-    "name": "Observability depth — logging and tracing",
+    "name": "Observability depth (logging and tracing)",
     "note": "beyond metrics: OpenTelemetry, log pipelines, traces",
     "icon": "chart"
   },
