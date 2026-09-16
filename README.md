@@ -14,10 +14,11 @@
 
 ### 📚 Learning
 
-- Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS
-- Local LLM infrastructure — hardware sizing, runtimes and serving
-- AI-assisted engineering workflows — agent skills, prompts and review
-- Security operations and SIEM — Wazuh stack, detection and response
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/icons/cloud.svg" alt="Oracle Cloud Infrastructure (OCI)" title="Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS" width="48" height="48">
+  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/icons/chip.svg" alt="Local LLM infrastructure" title="Local LLM infrastructure — hardware sizing, runtimes and serving" width="48" height="48">
+  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/icons/spark.svg" alt="AI-assisted engineering workflows" title="AI-assisted engineering workflows — agent skills, prompts and review" width="48" height="48">
+</p>
 
 ## 📊 GitHub Stats
 

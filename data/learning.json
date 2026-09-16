@@ -1,6 +1,17 @@
 [
-  "Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS",
-  "Local LLM infrastructure — hardware sizing, runtimes and serving",
-  "AI-assisted engineering workflows — agent skills, prompts and review",
-  "Security operations and SIEM — Wazuh stack, detection and response"
+  {
+    "name": "Oracle Cloud Infrastructure (OCI)",
+    "note": "the second cloud alongside AWS",
+    "icon": "cloud"
+  },
+  {
+    "name": "Local LLM infrastructure",
+    "note": "hardware sizing, runtimes and serving",
+    "icon": "chip"
+  },
+  {
+    "name": "AI-assisted engineering workflows",
+    "note": "agent skills, prompts and review",
+    "icon": "spark"
+  }
 ]
