@@ -15,13 +15,19 @@ any third-party script or card service.
 ## What GitHub requires for the profile view
 
 GitHub renders this README on the profile page only when **all** of these hold
-([docs](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)):
+([docs](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme)):
 
 - the repository is named exactly like the account — `mathewmusango`;
 - **the repository is public** — making it private removes the profile view;
 - `README.md` exists at the repository root and is not empty.
 
 So while the profile view is wanted, this repo cannot be private.
+
+Two footnotes from the same page: profile READMEs are not available to *managed user accounts*,
+and a public repo named after the account that existed **before July 2020** is not shown
+automatically — you click **Share to profile** on the repo. Neither applies here (personal
+account, repo created fresh), but the second is worth remembering because the account itself
+dates from 2017.
 
 ## Why the cards are SVG images
 
