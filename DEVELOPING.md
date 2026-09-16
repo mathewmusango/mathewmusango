@@ -32,8 +32,13 @@ dates from 2017.
 ## How the profile view is built
 
 A profile page accepts markdown and a sanitised subset of HTML — no CSS, no `<style>`, no
-scripts, no classes — so the layout is the familiar profile-README shape: greeting, intro
-bullets, contact badges, a project list, a skill-icon row, statistics cards, a wave sign-off.
+scripts, no classes — so the layout is the familiar profile-README shape: intro bullets, contact
+badges, a skill-icon row, statistics cards, a wave sign-off.
+
+The greeting heading, the tagline and the Featured Projects list were **removed at the user's
+request (2026-09-16)** — the README opens straight into the emoji bullets. `project_list()` and the
+`TAGLINE` constant are gone from the generator; recover them from git history if they're wanted
+again (the repository data is untouched in the snapshot and still drives the hub page).
 
 | Piece | Rendered by | Notes |
 | --- | --- | --- |
@@ -102,9 +107,9 @@ since the API does not carry them:
 | `build_readme.py` | `USER`, `BRANCH`, `RAW` (image base), `SITE`/`LINKEDIN`/`EMAIL`, `STATS_SOURCE`, and the editorial copy: `TAGLINE`, `BULLETS`, `EXTRA_SKILLS` |
 | `assets/js/app.js` | `MAX_PROJECTS`, `MAX_LANGUAGE_REPOS`, `LIVE` |
 
-Repo descriptions feed the project list straight from the API — `dotfiles` (“my-configs”) and
-`my-template` (“my-template”) are as thin as they are on GitHub, so improving those descriptions
-in the repo settings is the quickest content win.
+Repo descriptions no longer appear in the README (the projects list was removed), so the thin
+`dotfiles` (“my-configs”) and `my-template` (“my-template”) descriptions only affect the hub page
+and GitHub search — worth improving in the repo settings regardless.
 
 The daily workflow runs both scripts and commits whatever moved, so the cards — and the
 "last refreshed" line — stay current without a third-party service.
