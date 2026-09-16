@@ -6,6 +6,7 @@
   "Podman",
   "Linux",
   "Arch Linux",
+  "Zsh",
   "Bash",
   "GitHub Actions",
   "GitLab",
@@ -17,5 +18,7 @@
   "Prometheus",
   "Grafana",
   "Obsidian",
-  "Elasticsearch"
+  "Elasticsearch",
+  "Git",
+  "GitHub"
 ]

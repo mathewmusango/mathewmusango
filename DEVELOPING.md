@@ -20,7 +20,8 @@ that existed before July 2020 needs "Share to profile" — neither applies here.
 | Path | Why |
 | --- | --- |
 | `README.md` | **Generated** — the profile view. Edit the script or the lists, never this file |
-| `assets/svg/icons/*.svg` | **Generated** Learning tiles (`cloud`, `chip`, `spark`, `server`, `key`, `chart`, `cube`, `pipeline`) |
+| `assets/svg/icons/*.svg` | **Generated** Learning glyphs (`cloud`, `chip`, `spark`, `server`, `key`, `chart`, `cube`, `pipeline`) |
+| `assets/svg/brands/*.svg` | Hand-kept brand marks the CDN no longer serves — currently just AWS, with its provenance in that folder's README |
 | `assets/svg/footer.svg` | **Generated** wave sign-off |
 | `data/core_tech.json` | The tool list → the skill-icon row |
 | `data/learning.json` | `{name, note, icon}` rows → the Learning tiles |
@@ -39,8 +40,12 @@ consumed its data any more. Restore both with `git revert` or by re-adding those
 python3 scripts/build_readme.py   # README.md + assets/svg/** — offline, no dependencies
 ```
 
-It prunes Learning tiles whose entry has been removed, so deleting an item from the list cleans up
+It prunes Learning glyphs whose entry has been removed, so deleting an item from the list cleans up
 after itself.
+
+The page is deliberately just three centred blocks — the badge row, **Languages and Tools**, and
+**Learning** — followed by the wave. The `<sub>` note that used to sit under the wave was removed at
+the user's request (2026-09-16): with nothing else on the page, it was noise.
 
 Preview: open `README.md` in Zed and *Open Preview* (`ctrl-k v`) — relative image paths resolve
 locally, so no push is needed to see the result.
@@ -50,8 +55,8 @@ locally, so no push is needed to see the result.
 | Piece | Rendered by | Notes |
 | --- | --- | --- |
 | Contact badges | shields.io | **Static** badges only — no third-party integration that can go stale |
-| Languages and tools | skillicons.dev | Slugs mapped from `data/core_tech.json`. Each slug must be probed alone: a resolved slug returns more than 256 bytes, an unresolved one exactly 256. **Podman has no icon** (nor do zsh, zed or archlinux), so it is skipped rather than rendered blank |
-| Learning sub-section | **our own tiles** | `write_learning_icons()` draws them — no icon set carries OCI, LLM, AI-workflow, PKI, tracing or GitOps marks. Each `<img>` carries `title` (name — note) for a hover tooltip and `alt` for assistive tech; the whole section disappears when the list is empty |
+| Languages and tools | Simple Icons CDN + one local mark | Flat monochrome glyphs in the accent colour (`cdn.simpleicons.org/<slug>/39d353`), slugs mapped from `data/core_tech.json`. **Probe a slug before trusting it — an unknown one answers `404` with a zero-byte body.** AWS is no longer in the set (withdrawn at Amazon's request), so it is committed at `assets/svg/brands/amazonaws.svg`; see that folder's README. Every icon is its own `<img>` with `title` and `alt`, so each has a hover tooltip |
+| Learning sub-section | **our own glyphs** | `write_learning_icons()` draws them flat in the same accent colour and at a trimmed `viewBox`, so they optically match the CDN glyphs beside them — no icon set carries OCI, LLM, AI-workflow, PKI, tracing or GitOps marks. Hover shows `name — note`; the row disappears when the list is empty |
 | Wave sign-off | **our own card** | `footer.svg` |
 | Contribution graph | GitHub | Rendered natively below the README — nothing to do |
 
@@ -63,8 +68,12 @@ constant if that is ever needed.
 
 ## Editing
 
-- **Tool list** → `data/core_tech.json`. Names missing from `SKILL_SLUGS` simply don't appear in the
-  icon row; add a mapping only after probing that the slug resolves.
+- **Tool list** → `data/core_tech.json`. A name with no entry in `BRAND_SLUGS` simply doesn't appear in
+  the row; add a mapping only after probing it (`https://cdn.simpleicons.org/<slug>/<colour>` → `404`
+  with a zero-byte body means the icon doesn't exist). If the CDN has dropped the mark entirely — as
+  with AWS — commit it under `assets/svg/brands/` and list the slug in `LOCAL_BRANDS`.
 - **Learning list** → `data/learning.json`; `icon` must be a key in `GLYPHS`, or add a glyph function.
+  Glyphs are drawn in the 48-unit box and displayed through `GLYPH_VIEW = "6 6 36 36"`, so keep
+  drawing geometry roughly inside `9…39` or it will touch the trimmed edge.
 - **Badge targets** → `SITE`, `LINKEDIN`, `EMAIL` in `build_readme.py` (`USER`, `BRANCH` too).
 - **Palette** → the colour constants at the top of `build_readme.py`.

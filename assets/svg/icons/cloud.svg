@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="cloud — learning">
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="6 6 36 36" role="img" aria-label="cloud — learning">
 <title>cloud — learning</title>
 
-<rect x="0.5" y="0.5" width="47" height="47" rx="10" fill="#111111" stroke="#222222"/>
-<circle cx="18.5" cy="27" r="6.5" fill="#39d353"/><circle cx="28" cy="24" r="9" fill="#39d353"/><circle cx="36" cy="29" r="5.5" fill="#39d353"/><rect x="14" y="29" width="22" height="6.5" rx="3.25" fill="#39d353"/>
+<circle cx="15.5" cy="27" r="6.5" fill="#39d353"/><circle cx="25" cy="24" r="9" fill="#39d353"/><circle cx="33" cy="29" r="5.5" fill="#39d353"/><rect x="11" y="29" width="22" height="6.5" rx="3.25" fill="#39d353"/>
 </svg>

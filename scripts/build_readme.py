@@ -5,12 +5,14 @@ GitHub renders this repository's ``README.md`` on ``github.com/<user>``, and a
 profile page accepts nothing but markdown and a sanitised subset of HTML — no
 CSS, no scripts, no classes. So the page is assembled from:
 
-* shields.io **static** badges (no integration that can go stale),
-* one skillicons.dev image for the tool row,
-* SVG tiles drawn here for the Learning rows, plus the wave sign-off.
+* shields.io **static** badges (the contact row),
+* flat monochrome brand glyphs from the Simple Icons CDN for the tool row,
+  plus one locally committed glyph for AWS, which Simple Icons no longer carries,
+* SVG tiles drawn here for the Learning row and the wave sign-off.
 
-The only inputs are the two editorial lists in ``data/`` — there is no API call,
-no token and nothing to schedule.
+Every icon is a separate ``<img>`` carrying ``title`` (a hover tooltip) and
+``alt``, and every row is centred, because these two sections *are* the page.
+The only inputs are the two editorial lists in ``data/``.
 
 Writes:
   README.md
@@ -26,6 +28,7 @@ from __future__ import annotations
 import html
 import json
 import pathlib
+import urllib.parse
 
 USER = "mathewmusango"
 BRANCH = "main"
@@ -45,33 +48,44 @@ EMAIL = "musangomathew@gmail.com"
 CORE_TECH = json.loads((ROOT / "data" / "core_tech.json").read_text(encoding="utf-8"))
 LEARNING = json.loads((ROOT / "data" / "learning.json").read_text(encoding="utf-8"))
 
-# Display name (as used in data/core_tech.json) → skillicons.dev slug. Names absent
-# from this map simply don't appear in the icon row: skillicons has no Podman icon
-# (and none for zsh, zed or archlinux either), and an unknown slug renders blank —
-# so every slug added here must be probed alone first (a resolved slug returns more
-# than 256 bytes; an unresolved one returns exactly 256).
-SKILL_SLUGS = {
+# Display name (as used in data/core_tech.json) → Simple Icons slug. Names absent
+# from this map don't appear in the row at all, so adding an entry there means
+# adding a mapping here too. Each slug must be probed before it is trusted:
+# https://cdn.simpleicons.org/<slug>/<colour> answers 404 with a zero-byte body
+# when the icon does not exist — which is how `amazonaws` was found to have been
+# withdrawn from the set (see LOCAL_BRANDS below).
+BRAND_SLUGS = {
     "Kubernetes": "kubernetes",
     "Terraform": "terraform",
-    "AWS": "amazonwebservices",
     "Docker": "docker",
+    "Podman": "podman",
     "Linux": "linux",
-    "Arch Linux": "arch",
-    "Bash": "bash",
+    "Arch Linux": "archlinux",
+    "Bash": "gnubash",
+    "Zsh": "zsh",
     "GitHub Actions": "githubactions",
     "GitLab": "gitlab",
     "Python": "python",
-    "HTML": "html",
+    "HTML": "html5",
     "CSS": "css",
-    "JavaScript": "js",
+    "JavaScript": "javascript",
     "MkDocs": "markdown",
     "Prometheus": "prometheus",
     "Grafana": "grafana",
     "Obsidian": "obsidian",
     "Elasticsearch": "elasticsearch",
+    "Git": "git",
+    "GitHub": "github",
+    "AWS": "amazonaws",
 }
-# Always-true extras appended to the icon row.
-EXTRA_SKILLS = ["git", "github"]
+# Brands kept in the repo because the CDN no longer serves them. AWS was removed
+# from Simple Icons at Amazon's request, so the mark is committed here instead —
+# see assets/svg/brands/README.md.
+LOCAL_BRANDS = {"amazonaws"}
+
+ICON_SIZE = 30
+ICON_COLOUR = "39d353"
+CDN = "https://cdn.simpleicons.org"
 
 BG = "#030303"
 BORDER = "#222222"
@@ -79,22 +93,24 @@ GREEN = "#26a641"
 GREEN_BRIGHT = "#39d353"
 GREEN_BTN = "#238636"
 
-# Learning icon tiles — drawn here because no icon set carries marks for OCI,
+# Learning tiles — drawn here because no icon set carries marks for OCI,
 # local-LLM work, AI-assisted workflows, PKI, tracing or GitOps.
-GLYPH_SIZE = 48
-GLYPH_TILE = "#111111"
-GLYPH_INK = "#39d353"
+GLYPH_BOX = 48
+GLYPH_VIEW = "6 6 36 36"  # trims the drawing's margin so it optically matches CDN glyphs
+GLYPH_INK = GREEN_BRIGHT
 
 
 def esc(text: str) -> str:
     return html.escape(str(text), quote=True)
 
 
-def svg(width: int, height: int, body: list[str], title: str, defs: str = "") -> str:
+def svg(width: int, height: int, body: list[str], title: str, defs: str = "",
+        view_box: str | None = None) -> str:
     return "\n".join(
         [
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
-            f'viewBox="0 0 {width} {height}" role="img" aria-label="{esc(title)}">',
+            f'viewBox="{view_box or f"0 0 {width} {height}"}" role="img" '
+            f'aria-label="{esc(title)}">',
             f"<title>{esc(title)}</title>",
             defs,
             *body,
@@ -106,10 +122,10 @@ def svg(width: int, height: int, body: list[str], title: str, defs: str = "") ->
 
 def _glyph_cloud(ink: str) -> str:
     return (
-        f'<circle cx="18.5" cy="27" r="6.5" fill="{ink}"/>'
-        f'<circle cx="28" cy="24" r="9" fill="{ink}"/>'
-        f'<circle cx="36" cy="29" r="5.5" fill="{ink}"/>'
-        f'<rect x="14" y="29" width="22" height="6.5" rx="3.25" fill="{ink}"/>'
+        f'<circle cx="15.5" cy="27" r="6.5" fill="{ink}"/>'
+        f'<circle cx="25" cy="24" r="9" fill="{ink}"/>'
+        f'<circle cx="33" cy="29" r="5.5" fill="{ink}"/>'
+        f'<rect x="11" y="29" width="22" height="6.5" rx="3.25" fill="{ink}"/>'
     )
 
 
@@ -122,7 +138,7 @@ def _glyph_chip(ink: str) -> str:
         pins.append(f'<rect x="34.5" y="{centre - 1}" width="4.5" height="2" rx="1" fill="{ink}"/>')
     body = (
         f'<rect x="15" y="15" width="18" height="18" rx="3.5" fill="none" '
-        f'stroke="{ink}" stroke-width="2.6"/>'
+        f'stroke="{ink}" stroke-width="3.2"/>'
         f'<rect x="21" y="21" width="6" height="6" rx="1.5" fill="{ink}"/>'
     )
     return body + "".join(pins)
@@ -140,36 +156,36 @@ def _glyph_server(ink: str) -> str:
     for y in (13, 26):
         units.append(
             f'<rect x="12" y="{y}" width="24" height="9.5" rx="2.5" fill="none" '
-            f'stroke="{ink}" stroke-width="2.4"/>'
-            f'<circle cx="16.6" cy="{y + 4.75}" r="1.6" fill="{ink}"/>'
-            f'<rect x="21" y="{y + 3.6}" width="11" height="2.2" rx="1.1" fill="{ink}"/>'
+            f'stroke="{ink}" stroke-width="3"/>'
+            f'<circle cx="16.6" cy="{y + 4.75}" r="1.8" fill="{ink}"/>'
+            f'<rect x="21" y="{y + 3.6}" width="11" height="2.4" rx="1.2" fill="{ink}"/>'
         )
     return "".join(units)
 
 
 def _glyph_key(ink: str) -> str:
     return (
-        f'<circle cx="17" cy="24" r="6.2" fill="none" stroke="{ink}" stroke-width="2.6"/>'
-        f'<rect x="22" y="22.6" width="14" height="2.8" rx="1.4" fill="{ink}"/>'
-        f'<rect x="29.5" y="25.4" width="2.6" height="4.6" rx="1.3" fill="{ink}"/>'
-        f'<rect x="33.5" y="25.4" width="2.6" height="6.4" rx="1.3" fill="{ink}"/>'
+        f'<circle cx="17" cy="24" r="6.2" fill="none" stroke="{ink}" stroke-width="3.2"/>'
+        f'<rect x="22" y="22.4" width="14" height="3.2" rx="1.6" fill="{ink}"/>'
+        f'<rect x="29.5" y="25.4" width="3" height="4.6" rx="1.5" fill="{ink}"/>'
+        f'<rect x="33.5" y="25.4" width="3" height="6.4" rx="1.5" fill="{ink}"/>'
     )
 
 
 def _glyph_chart(ink: str) -> str:
     return (
         f'<polyline points="12,33 19.5,25.5 25,29.5 36,15.5" fill="none" stroke="{ink}" '
-        f'stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>'
-        f'<rect x="11" y="35.2" width="26" height="2.4" rx="1.2" fill="{ink}"/>'
+        f'stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>'
+        f'<rect x="11" y="35.2" width="26" height="2.8" rx="1.4" fill="{ink}"/>'
     )
 
 
 def _glyph_cube(ink: str) -> str:
     return (
         f'<polygon points="24,10.5 35.5,17 35.5,31 24,37.5 12.5,31 12.5,17" fill="none" '
-        f'stroke="{ink}" stroke-width="2.6" stroke-linejoin="round"/>'
+        f'stroke="{ink}" stroke-width="3.2" stroke-linejoin="round"/>'
         f'<polygon points="24,10.5 35.5,17 24,23.5 12.5,17" fill="{ink}" opacity="0.5"/>'
-        f'<rect x="22.8" y="23.2" width="2.4" height="14" fill="{ink}" opacity="0.5"/>'
+        f'<rect x="22.6" y="23.2" width="2.8" height="14" fill="{ink}" opacity="0.5"/>'
     )
 
 
@@ -230,7 +246,7 @@ def badges() -> str:
             f'align="center" /></a>'
         )
 
-    return " ".join(
+    return "\n  ".join(
         [
             badge("Website", "mathewmusango.github.io", "26a641", "googlechrome", SITE, "Portfolio"),
             badge("LinkedIn", "Connect", "0077B5", "linkedin", LINKEDIN, "LinkedIn"),
@@ -240,39 +256,41 @@ def badges() -> str:
     )
 
 
-def skill_row() -> str:
-    slugs = [SKILL_SLUGS[name] for name in CORE_TECH if name in SKILL_SLUGS] + EXTRA_SKILLS
-    display = {slug: name for name, slug in SKILL_SLUGS.items()}
-    display.update({"git": "Git", "github": "GitHub"})
-    alt = ", ".join(display.get(slug, slug) for slug in slugs)
+def icon(src: str, name: str) -> str:
     return (
-        '<p align="center">\n'
-        f'  <a href="{SITE}">\n'
-        f'    <img src="https://skillicons.dev/icons?i={",".join(slugs)}&perline=10" '
-        f'alt="{esc(alt)}" />\n  </a>\n</p>'
+        f'<img src="{src}" alt="{esc(name)}" title="{esc(name)}" '
+        f'width="{ICON_SIZE}" height="{ICON_SIZE}">'
     )
 
 
-def learning_section() -> str:
-    """The Learning sub-section: a centred row of our own icon tiles.
+def tool_row() -> str:
+    """One flat glyph per tool, named in the tooltip."""
+    icons = []
+    for name in CORE_TECH:
+        slug = BRAND_SLUGS.get(name)
+        if not slug:
+            continue
+        if slug in LOCAL_BRANDS:
+            icons.append(icon(f"{IMAGE_BASE}assets/svg/brands/{slug}.svg", name))
+        else:
+            icons.append(icon(f"{CDN}/{urllib.parse.quote(slug)}/{ICON_COLOUR}", name))
+    return "\n  &nbsp;\n  ".join(icons)
 
-    Each <img> carries a title attribute — GitHub preserves it in rendered
-    READMEs, so hovering shows the name and note — and alt for assistive tech.
-    """
-    images = []
+
+def learning_row() -> str:
+    """The Learning row: our own glyphs, same size and treatment as the tools."""
+    icons = []
     for item in LEARNING:
         if not item.get("icon"):
             continue
-        tooltip = item["name"] + (" — " + item["note"] if item.get("note") else "")
-        images.append(
+        name = item["name"]
+        tooltip = name + (" — " + item["note"] if item.get("note") else "")
+        icons.append(
             f'<img src="{IMAGE_BASE}assets/svg/icons/{item["icon"]}.svg" '
-            f'alt="{esc(item["name"])}" title="{esc(tooltip)}" '
-            f'width="{GLYPH_SIZE}" height="{GLYPH_SIZE}">'
+            f'alt="{esc(name)}" title="{esc(tooltip)}" '
+            f'width="{ICON_SIZE}" height="{ICON_SIZE}">'
         )
-    if not images:
-        return ""
-    joined = "\n  ".join(images)
-    return f'\n### 📚 Learning\n\n<p align="center">\n  {joined}\n</p>\n'
+    return "\n  &nbsp;\n  ".join(icons)
 
 
 def write_learning_icons(icons: list[str]) -> list[pathlib.Path]:
@@ -283,13 +301,12 @@ def write_learning_icons(icons: list[str]) -> list[pathlib.Path]:
         glyph = GLYPHS.get(name)
         if not glyph:
             continue
-        body = [
-            f'<rect x="0.5" y="0.5" width="{GLYPH_SIZE - 1}" height="{GLYPH_SIZE - 1}" '
-            f'rx="10" fill="{GLYPH_TILE}" stroke="{BORDER}"/>',
-            glyph(GLYPH_INK),
-        ]
         path = out_dir / f"{name}.svg"
-        path.write_text(svg(GLYPH_SIZE, GLYPH_SIZE, body, f"{name} — learning"), encoding="utf-8")
+        path.write_text(
+            svg(GLYPH_BOX, GLYPH_BOX, [glyph(GLYPH_INK)], f"{name} — learning",
+                view_box=GLYPH_VIEW),
+            encoding="utf-8",
+        )
         written.append(path)
 
     # Tiles whose entry was removed don't belong in the repo.
@@ -308,17 +325,21 @@ def readme() -> str:
   {badges()}
 </p>
 
-## 🛠️ Languages and Tools
+<h3 align="center">Languages and Tools</h3>
 
-{skill_row()}
-{learning_section()}
+<p align="center">
+  {tool_row()}
+</p>
+
+<h3 align="center">Learning</h3>
+
+<p align="center">
+  {learning_row()}
+</p>
+
 <p align="center">
   <img src="{IMAGE_BASE}assets/svg/footer.svg" alt="" width="100%">
 </p>
-
-<sub>Badges, icons and this README are generated by
-<code>scripts/build_readme.py</code> from the lists in <code>data/</code>.
-Contribution activity below is rendered natively by GitHub.</sub>
 """
 
 
