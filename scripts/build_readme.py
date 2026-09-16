@@ -28,9 +28,13 @@ USER = "mathewmusango"
 BRANCH = "main"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
-# Absolute raw URLs: they resolve on the profile page, in the repo view, and
-# anywhere the README is embedded. (Relative paths work in the repo view only.)
+# Image references are repo-relative by default. They resolve in a local preview,
+# in the GitHub repo view, and on the profile page (GitHub renders the profile
+# README with the repository as context). Set IMAGE_BASE to RAW to force
+# absolute raw.githubusercontent.com URLs instead — those only work once the
+# repository is public, since they 404 until then.
 RAW = f"https://raw.githubusercontent.com/{USER}/{USER}/{BRANCH}"
+IMAGE_BASE = ""
 
 SITE = "https://mathewmusango.github.io/my-portfolio/"
 LINKEDIN = "https://www.linkedin.com/in/mathew-musango/"
@@ -101,7 +105,34 @@ def _glyph_spark(ink: str) -> str:
     )
 
 
-GLYPHS = {"cloud": _glyph_cloud, "chip": _glyph_chip, "spark": _glyph_spark}
+def _glyph_server(ink: str) -> str:
+    units = []
+    for y in (13, 26):
+        units.append(
+            f'<rect x="12" y="{y}" width="24" height="9.5" rx="2.5" fill="none" '
+            f'stroke="{ink}" stroke-width="2.4"/>'
+            f'<circle cx="16.6" cy="{y + 4.75}" r="1.6" fill="{ink}"/>'
+            f'<rect x="21" y="{y + 3.6}" width="11" height="2.2" rx="1.1" fill="{ink}"/>'
+        )
+    return "".join(units)
+
+
+def _glyph_key(ink: str) -> str:
+    return (
+        f'<circle cx="17" cy="24" r="6.2" fill="none" stroke="{ink}" stroke-width="2.6"/>'
+        f'<rect x="22" y="22.6" width="14" height="2.8" rx="1.4" fill="{ink}"/>'
+        f'<rect x="29.5" y="25.4" width="2.6" height="4.6" rx="1.3" fill="{ink}"/>'
+        f'<rect x="33.5" y="25.4" width="2.6" height="6.4" rx="1.3" fill="{ink}"/>'
+    )
+
+
+GLYPHS = {
+    "cloud": _glyph_cloud,
+    "chip": _glyph_chip,
+    "spark": _glyph_spark,
+    "server": _glyph_server,
+    "key": _glyph_key,
+}
 
 # Display name (as used by the hub page) → skillicons.dev slug. Names absent from
 # this map simply don't appear in the icon row: skillicons has no Podman icon (and
@@ -125,6 +156,7 @@ SKILL_SLUGS = {
     "MkDocs": "markdown",
     "Prometheus": "prometheus",
     "Grafana": "grafana",
+    "Obsidian": "obsidian",
 }
 # Always-true extras appended to the icon row.
 EXTRA_SKILLS = ["git", "github"]
@@ -339,9 +371,9 @@ def badges() -> str:
 
 def own_stats(snapshot: dict) -> str:
     images = [
-        f'{RAW}/assets/svg/stats.svg',
-        f'{RAW}/assets/svg/langs.svg',
-        f'{RAW}/assets/svg/streak.svg',
+        f'{IMAGE_BASE}assets/svg/stats.svg',
+        f'{IMAGE_BASE}assets/svg/langs.svg',
+        f'{IMAGE_BASE}assets/svg/streak.svg',
     ]
     alts = [
         f"{snapshot['stats']['repos']} public repositories, {snapshot['stats']['stars']} stars, "
@@ -390,7 +422,7 @@ def learning_section() -> str:
         if item.get("note"):
             tooltip += " — " + item["note"]
         images.append(
-            f'<img src="{RAW}/assets/svg/icons/{item["icon"]}.svg" '
+            f'<img src="{IMAGE_BASE}assets/svg/icons/{item["icon"]}.svg" '
             f'alt="{esc(item["name"])}" title="{esc(tooltip)}" '
             f'width="{GLYPH_SIZE}" height="{GLYPH_SIZE}">'
         )
@@ -442,7 +474,7 @@ def readme(snapshot: dict) -> str:
 {stats}
 
 <p align="center">
-  <img src="{RAW}/assets/svg/footer.svg" alt="" width="100%">
+  <img src="{IMAGE_BASE}assets/svg/footer.svg" alt="" width="100%">
 </p>
 
 <sub>Statistics, cards and this README are generated from GitHub's public API by

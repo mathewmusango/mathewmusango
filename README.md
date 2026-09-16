@@ -8,32 +8,34 @@
 
 <p align="center">
   <a href="https://mathewmusango.github.io/my-portfolio/">
-    <img src="https://skillicons.dev/icons?i=kubernetes,terraform,amazonwebservices,docker,linux,arch,bash,githubactions,gitlab,python,html,css,js,markdown,prometheus,grafana,git,github&perline=10" alt="Kubernetes, Terraform, AWS, Docker, Linux, Arch Linux, Bash, GitHub Actions, GitLab, Python, HTML, CSS, JavaScript, MkDocs, Prometheus, Grafana, Git, GitHub" />
+    <img src="https://skillicons.dev/icons?i=kubernetes,terraform,amazonwebservices,docker,linux,arch,bash,githubactions,gitlab,python,html,css,js,markdown,prometheus,grafana,obsidian,git,github&perline=10" alt="Kubernetes, Terraform, AWS, Docker, Linux, Arch Linux, Bash, GitHub Actions, GitLab, Python, HTML, CSS, JavaScript, MkDocs, Prometheus, Grafana, Obsidian, Git, GitHub" />
   </a>
 </p>
 
 ### 📚 Learning
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/icons/cloud.svg" alt="Oracle Cloud Infrastructure (OCI)" title="Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS" width="48" height="48">
-  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/icons/chip.svg" alt="Local LLM infrastructure" title="Local LLM infrastructure — hardware sizing, runtimes and serving" width="48" height="48">
-  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/icons/spark.svg" alt="AI-assisted engineering workflows" title="AI-assisted engineering workflows — agent skills, prompts and review" width="48" height="48">
+  <img src="assets/svg/icons/cloud.svg" alt="Oracle Cloud Infrastructure (OCI)" title="Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS" width="48" height="48">
+  <img src="assets/svg/icons/chip.svg" alt="Local LLM infrastructure" title="Local LLM infrastructure — hardware sizing, runtimes and serving" width="48" height="48">
+  <img src="assets/svg/icons/spark.svg" alt="AI-assisted engineering workflows" title="AI-assisted engineering workflows — agent skills, prompts and review" width="48" height="48">
+  <img src="assets/svg/icons/server.svg" alt="Virtualisation (KVM/libvirt)" title="Virtualisation (KVM/libvirt) — self-hosted VM lab: storage, networking, snapshots" width="48" height="48">
+  <img src="assets/svg/icons/key.svg" alt="PKI and private certificate authorities" title="PKI and private certificate authorities — issuing, trusting and rotating certificates end to end" width="48" height="48">
 </p>
 
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/stats.svg" alt="4 public repositories, 2 stars, 24 followers, 9 years active" width="100%">
+  <img src="assets/svg/stats.svg" alt="4 public repositories, 2 stars, 24 followers, 9 years active" width="100%">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/langs.svg" alt="Most used languages by bytes committed" width="100%">
+  <img src="assets/svg/langs.svg" alt="Most used languages by bytes committed" width="100%">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/streak.svg" alt="Current streak, longest streak and contributions in the last year" width="100%">
+  <img src="assets/svg/streak.svg" alt="Current streak, longest streak and contributions in the last year" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mathewmusango/mathewmusango/main/assets/svg/footer.svg" alt="" width="100%">
+  <img src="assets/svg/footer.svg" alt="" width="100%">
 </p>
 
 <sub>Statistics, cards and this README are generated from GitHub's public API by

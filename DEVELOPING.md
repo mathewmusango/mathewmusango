@@ -55,6 +55,13 @@ default) and the familiar third-party images (`"cards"` → github-readme-stats 
 plus streak-stats.demolab.com). Own cards mean no external service can break the page or
 rate-limit it; the third-party route is one constant away if the classic look is preferred.
 
+**Image paths are repo-relative** (`assets/svg/…`) by default. They resolve in a local preview, in
+the repo view, and on the profile page — which GitHub renders with the repository as context. That
+matters: absolute `raw.githubusercontent.com` URLs 404 until the repository actually exists, and the
+first pass used them, so every card and tile came up broken before the first push. `IMAGE_BASE` in
+`build_readme.py` switches the whole README to absolute URLs in one constant if the profile page
+ever needs it.
+
 Text inside the SVG cards is positioned with an approximate Helvetica metric table, so headings
 and labels can be centred and wrapped without pulling in a font library; typefaces resolve in the
 visitor's browser. `build_readme.py` recomputes the contribution streaks from the calendar in the

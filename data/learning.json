@@ -13,5 +13,15 @@
     "name": "AI-assisted engineering workflows",
     "note": "agent skills, prompts and review",
     "icon": "spark"
+  },
+  {
+    "name": "Virtualisation (KVM/libvirt)",
+    "note": "self-hosted VM lab: storage, networking, snapshots",
+    "icon": "server"
+  },
+  {
+    "name": "PKI and private certificate authorities",
+    "note": "issuing, trusting and rotating certificates end to end",
+    "icon": "key"
   }
 ]
