@@ -32,13 +32,14 @@ dates from 2017.
 ## How the profile view is built
 
 A profile page accepts markdown and a sanitised subset of HTML — no CSS, no `<style>`, no
-scripts, no classes — so the layout is the familiar profile-README shape: intro bullets, contact
-badges, a skill-icon row, statistics cards, a wave sign-off.
+scripts, no classes — so the layout is the familiar profile-README shape: a centred contact badge
+row, a skill-icon row, statistics cards and a wave sign-off.
 
-The greeting heading, the tagline and the Featured Projects list were **removed at the user's
-request (2026-09-16)** — the README opens straight into the emoji bullets. `project_list()` and the
-`TAGLINE` constant are gone from the generator; recover them from git history if they're wanted
-again (the repository data is untouched in the snapshot and still drives the hub page).
+Everything textual was **stripped at the user's request (2026-09-16)**: the greeting heading, the
+tagline, the Featured Projects list, and finally the emoji bullet list (which took `project_list()`,
+`TAGLINE` and `BULLETS` with it). The page now opens directly with the badge row — don't re-add
+prose unprompted. Git history has the removed renderers, and the repository data is untouched in
+the snapshot and still drives the hub page.
 
 | Piece | Rendered by | Notes |
 | --- | --- | --- |
