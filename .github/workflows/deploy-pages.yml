@@ -30,19 +30,21 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Refresh the snapshot
-        run: python3 scripts/fetch_profile.py
+      - name: Refresh the snapshot and the profile cards
+        run: |
+          python3 scripts/fetch_profile.py
+          python3 scripts/build_readme.py
 
       - name: Commit if it moved
         run: |
           if [ -z "$(git status --porcelain)" ]; then
-            echo "Snapshot already current."
+            echo "Already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data assets/img
-          git commit -m "chore: refresh the GitHub snapshot"
+          git add data assets/img assets/svg README.md
+          git commit -m "chore: refresh the GitHub snapshot and profile cards"
           git push
 
   deploy:
@@ -67,6 +69,7 @@ jobs:
         run: |
           mkdir -p _site
           cp -r index.html assets data _site/
+          rm -rf _site/assets/svg
 
       - uses: actions/configure-pages@v5
 

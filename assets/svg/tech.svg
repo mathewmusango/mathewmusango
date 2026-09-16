@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="430" viewBox="0 0 1280 430" role="img" aria-label="Tech stack and languages">
+<title>Tech stack and languages</title>
+<defs><linearGradient id="bar" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#238636"/><stop offset="100%" stop-color="#39d353"/></linearGradient></defs>
+<rect width="1280" height="430" fill="#030303"/>
+<rect x="20" y="20" width="1240" height="390" rx="16" fill="#0a0a0a" stroke="#222222"/>
+<text x="48.0" y="68.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#ededed" font-weight="700">Tech Stack &amp; Languages</text>
+<text x="1232.0" y="68.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e" text-anchor="end">By bytes committed</text>
+<text x="48.0" y="104.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" font-weight="700" letter-spacing="1.6">CORE TECHNOLOGIES</text>
+<rect x="48.0" y="120" width="93.5" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="60.0" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Kubernetes</text>
+<rect x="149.5" y="120" width="86.8" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="161.5" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Terraform</text>
+<rect x="244.3" y="120" width="50.0" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="256.3" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">AWS</text>
+<rect x="302.3" y="120" width="66.5" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="314.3" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Docker</text>
+<rect x="376.7" y="120" width="66.5" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="388.7" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Podman</text>
+<rect x="451.2" y="120" width="59.7" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="463.2" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Linux</text>
+<rect x="518.9" y="120" width="121.2" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="530.9" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">GitHub Actions</text>
+<rect x="648.2" y="120" width="66.5" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="660.2" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Python</text>
+<rect x="722.6" y="120" width="53.0" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="734.6" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Bash</text>
+<rect x="783.6" y="120" width="68.4" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="795.6" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">MkDocs</text>
+<rect x="860.0" y="120" width="93.5" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="872.0" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Prometheus</text>
+<rect x="961.5" y="120" width="73.2" height="30" rx="15.0" fill="#111111" stroke="#222222"/>
+<text x="973.5" y="139.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Grafana</text>
+<text x="48.0" y="172.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" font-weight="700" letter-spacing="1.6">LANGUAGES</text>
+<text x="48.0" y="194.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#ededed" font-weight="700">Shell</text>
+<text x="1232.0" y="194.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b949e" text-anchor="end">49.9%</text>
+<rect x="48" y="206" width="1184" height="6" rx="3" fill="#1a1a1a"/>
+<rect x="48" y="206" width="590.8" height="6" rx="3" fill="url(#bar)"/>
+<text x="48.0" y="240.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#ededed" font-weight="700">HCL</text>
+<text x="1232.0" y="240.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b949e" text-anchor="end">28.4%</text>
+<rect x="48" y="252" width="1184" height="6" rx="3" fill="#1a1a1a"/>
+<rect x="48" y="252" width="336.3" height="6" rx="3" fill="url(#bar)"/>
+<text x="48.0" y="286.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#ededed" font-weight="700">Python</text>
+<text x="1232.0" y="286.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b949e" text-anchor="end">14.4%</text>
+<rect x="48" y="298" width="1184" height="6" rx="3" fill="#1a1a1a"/>
+<rect x="48" y="298" width="170.5" height="6" rx="3" fill="url(#bar)"/>
+<text x="48.0" y="332.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#ededed" font-weight="700">HTML</text>
+<text x="1232.0" y="332.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b949e" text-anchor="end">7.0%</text>
+<rect x="48" y="344" width="1184" height="6" rx="3" fill="#1a1a1a"/>
+<rect x="48" y="344" width="82.9" height="6" rx="3" fill="url(#bar)"/>
+<text x="48.0" y="378.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#ededed" font-weight="700">Dockerfile</text>
+<text x="1232.0" y="378.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b949e" text-anchor="end">0.3%</text>
+<rect x="48" y="390" width="1184" height="6" rx="3" fill="#1a1a1a"/>
+<rect x="48" y="390" width="6.0" height="6" rx="3" fill="url(#bar)"/>
+</svg>
