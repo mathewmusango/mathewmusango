@@ -27,19 +27,51 @@
   </picture> TOOLS</th></tr><tr><td align="center"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
     <img src="https://cdn.simpleicons.org/terraform" alt="Terraform" title="Terraform" width="30" height="30">
     <img src="assets/svg/brands/amazonaws.svg" alt="AWS" title="AWS" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/googlecloud" alt="Google Cloud Platform" title="Google Cloud Platform" width="30" height="30">
     <img src="https://cdn.simpleicons.org/docker" alt="Docker" title="Docker" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/podman/caa0d4">
     <img src="https://cdn.simpleicons.org/podman" alt="Podman" title="Podman" width="30" height="30">
   </picture>
+    <img src="https://cdn.simpleicons.org/cilium/886c0d" alt="Cilium" title="Cilium" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/harbor/35661c" alt="Harbor" title="Harbor" width="30" height="30">
     <img src="https://cdn.simpleicons.org/linux/8b6d14" alt="Linux" title="Linux" width="30" height="30">
     <img src="https://cdn.simpleicons.org/archlinux" alt="Arch Linux" title="Arch Linux" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/redhat" alt="Red Hat" title="Red Hat" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/centos/9d9dc2">
+    <img src="https://cdn.simpleicons.org/centos" alt="CentOS" title="CentOS" width="30" height="30">
+  </picture>
+    <img src="https://cdn.simpleicons.org/vmware" alt="VMware" title="VMware" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/minio" alt="MinIO" title="MinIO" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/qnap/92a1c7">
+    <img src="https://cdn.simpleicons.org/qnap" alt="QNAP" title="QNAP" width="30" height="30">
+  </picture>
+    <img src="https://cdn.simpleicons.org/nginx" alt="NGINX" title="NGINX" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/apache" alt="Apache" title="Apache" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/pfsense/9b9b9b">
+    <img src="https://cdn.simpleicons.org/pfsense" alt="pfSense" title="pfSense" width="30" height="30">
+  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/wireguard/c99798">
+    <img src="https://cdn.simpleicons.org/wireguard" alt="WireGuard" title="WireGuard" width="30" height="30">
+  </picture>
     <img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" title="GitHub Actions" width="30" height="30">
     <img src="https://cdn.simpleicons.org/gitlab/8b3c15" alt="GitLab" title="GitLab" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/jenkins" alt="Jenkins" title="Jenkins" width="30" height="30">
     <img src="https://cdn.simpleicons.org/ansible" alt="Ansible" title="Ansible" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/packer/015c83" alt="Packer" title="Packer" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/helm/9396ca">
     <img src="https://cdn.simpleicons.org/helm" alt="Helm" title="Helm" width="30" height="30">
+  </picture>
+    <img src="https://cdn.simpleicons.org/flux" alt="Flux" title="Flux" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/vault/8c823d" alt="HashiCorp Vault" title="HashiCorp Vault" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/trivy/988eee">
+    <img src="https://cdn.simpleicons.org/trivy" alt="Trivy" title="Trivy" width="30" height="30">
   </picture>
     <img src="https://cdn.simpleicons.org/git" alt="Git" title="Git" width="30" height="30">
     <picture>
@@ -51,8 +83,20 @@
     <img src="https://cdn.simpleicons.org/prometheus" alt="Prometheus" title="Prometheus" width="30" height="30">
     <img src="https://cdn.simpleicons.org/grafana" alt="Grafana" title="Grafana" width="30" height="30">
     <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/icinga/8f8fa0">
+    <img src="https://cdn.simpleicons.org/icinga" alt="Icinga" title="Icinga" width="30" height="30">
+  </picture>
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/elasticsearch/8cb2bf">
     <img src="https://cdn.simpleicons.org/elasticsearch" alt="Elasticsearch" title="Elasticsearch" width="30" height="30">
+  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/kibana/8cb2bf">
+    <img src="https://cdn.simpleicons.org/kibana" alt="Kibana" title="Kibana" width="30" height="30">
+  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/logstash/8cb2bf">
+    <img src="https://cdn.simpleicons.org/logstash" alt="Logstash" title="Logstash" width="30" height="30">
   </picture>
     <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30"></td></tr></table>
 
@@ -88,8 +132,22 @@
     <img src="assets/svg/icons/chip-light.svg" alt="Local LLM infrastructure" title="Local LLM infrastructure — hardware sizing, runtimes and serving" width="30" height="30">
   </picture>
     <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/ollama/8c8c8c">
+    <img src="https://cdn.simpleicons.org/ollama" alt="Ollama (local LLM runtime)" title="Ollama (local LLM runtime) — running models locally — quantisation, GPU sizing, serving" width="30" height="30">
+  </picture>
+    <img src="https://cdn.simpleicons.org/huggingface" alt="Hugging Face (model hub)" title="Hugging Face (model hub) — sourcing and evaluating models to run locally" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/spark.svg">
     <img src="assets/svg/icons/spark-light.svg" alt="AI-assisted engineering workflows" title="AI-assisted engineering workflows — agent skills, prompts and review" width="30" height="30">
+  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/zedindustries/90aee9">
+    <img src="https://cdn.simpleicons.org/zedindustries" alt="Zed (AI-assisted editor)" title="Zed (AI-assisted editor) — the editor and agent workflow he actually uses" width="30" height="30">
+  </picture>
+    <img src="https://cdn.simpleicons.org/claude" alt="Claude (Anthropic models)" title="Claude (Anthropic models) — AI-assisted engineering workflows in practice" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/anthropic/989898">
+    <img src="https://cdn.simpleicons.org/anthropic" alt="Anthropic (model vendor)" title="Anthropic (model vendor) — the platform behind Claude and its API" width="30" height="30">
   </picture>
     <img src="https://cdn.simpleicons.org/terraform" alt="Terraform module design and testing" title="Terraform module design and testing — reusable modules, terraform test, policy checks" width="30" height="30">
     <img src="https://cdn.simpleicons.org/argo/83442a" alt="GitOps and continuous delivery" title="GitOps and continuous delivery — declarative, pull-based delivery with Argo CD" width="30" height="30">
