@@ -1,7 +1,9 @@
 # What GitHub needs in order to render the profile — the allowlist. Everything not listed
 # below is local-only, and nothing below can break the page, because the page only ever reads
-# these: README.md · assets/svg/{header,divider,footer}.svg · assets/svg/panels/*.svg ·
-# assets/svg/icons/{cloud,chip,spark}.svg · the hand-kept assets/svg/brands/amazonaws.svg.
+# these: README.md · assets/svg/{header,divider,footer}.svg · assets/svg/icons/*.svg (the six glyphs:
+# cloud, chip, spark for the Learning tiles; gear, brackets, cap for the section headers) · the
+# hand-kept assets/svg/brands/amazonaws.svg. There is no `panels/` any more — the sections are
+# GitHub `<table>` boxes now (see `section_box` in the generator), so GitHub draws their border.
 # (The badges and glyphs under shields.io / cdn.simpleicons.org are fetched from those hosts.)
 #
 # **Every generated card ships twice** — `x.svg` for GitHub's dark theme and `x-light.svg` for

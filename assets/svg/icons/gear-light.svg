@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="6 6 36 36" role="img" aria-label="gear — glyph">
+<title>gear — glyph</title>
+
+<circle cx="24" cy="24" r="8.4" fill="none" stroke="#218bff" stroke-width="4"/><circle cx="24" cy="24" r="2.8" fill="#218bff"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(0 24 24)"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(45 24 24)"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(90 24 24)"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(135 24 24)"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(180 24 24)"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(225 24 24)"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(270 24 24)"/><rect x="22.5" y="7.6" width="3" height="6" rx="1.5" fill="#218bff" transform="rotate(315 24 24)"/>
+</svg>

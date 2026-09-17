@@ -21,107 +21,82 @@
   </picture>
 </p>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/panels/tools.svg">
-    <img src="assets/svg/panels/tools-light.svg" alt="Tools" width="100%">
-  </picture>
-</p>
-
-<p align="center">
-  <img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/terraform" alt="Terraform" title="Terraform" width="30" height="30">
-  <img src="assets/svg/brands/amazonaws.svg" alt="AWS" title="AWS" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/docker" alt="Docker" title="Docker" width="30" height="30">
-  <picture>
+<table align="center"><tr><th align="center"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/gear.svg">
+    <img src="assets/svg/icons/gear-light.svg" alt="Tools" title="Tools — section" width="18" height="18">
+  </picture> TOOLS</th></tr><tr><td align="center"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/terraform" alt="Terraform" title="Terraform" width="30" height="30">
+    <img src="assets/svg/brands/amazonaws.svg" alt="AWS" title="AWS" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/docker" alt="Docker" title="Docker" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/podman/caa0d4">
     <img src="https://cdn.simpleicons.org/podman" alt="Podman" title="Podman" width="30" height="30">
   </picture>
-  <img src="https://cdn.simpleicons.org/linux/8b6d14" alt="Linux" title="Linux" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/archlinux" alt="Arch Linux" title="Arch Linux" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" title="GitHub Actions" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/gitlab/8b3c15" alt="GitLab" title="GitLab" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/ansible" alt="Ansible" title="Ansible" width="30" height="30">
-  <picture>
+    <img src="https://cdn.simpleicons.org/linux/8b6d14" alt="Linux" title="Linux" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/archlinux" alt="Arch Linux" title="Arch Linux" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" title="GitHub Actions" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/gitlab/8b3c15" alt="GitLab" title="GitLab" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/ansible" alt="Ansible" title="Ansible" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/helm/9396ca">
     <img src="https://cdn.simpleicons.org/helm" alt="Helm" title="Helm" width="30" height="30">
   </picture>
-  <img src="https://cdn.simpleicons.org/git" alt="Git" title="Git" width="30" height="30">
-  <picture>
+    <img src="https://cdn.simpleicons.org/git" alt="Git" title="Git" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/979797">
     <img src="https://cdn.simpleicons.org/github" alt="GitHub" title="GitHub" width="30" height="30">
   </picture>
-  <img src="https://cdn.simpleicons.org/zsh" alt="Zsh" title="Zsh" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/gnubash/2b5e14" alt="Bash" title="Bash" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/prometheus" alt="Prometheus" title="Prometheus" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/grafana" alt="Grafana" title="Grafana" width="30" height="30">
-  <picture>
+    <img src="https://cdn.simpleicons.org/zsh" alt="Zsh" title="Zsh" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/gnubash/2b5e14" alt="Bash" title="Bash" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/prometheus" alt="Prometheus" title="Prometheus" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/grafana" alt="Grafana" title="Grafana" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/elasticsearch/8cb2bf">
     <img src="https://cdn.simpleicons.org/elasticsearch" alt="Elasticsearch" title="Elasticsearch" width="30" height="30">
   </picture>
-  <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30">
-</p>
+    <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30"></td></tr></table>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/panels/languages.svg">
-    <img src="assets/svg/panels/languages-light.svg" alt="Languages" width="100%">
-  </picture>
-</p>
-
-<p align="center">
-  <img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30">
-  <img src="https://cdn.simpleicons.org/html5" alt="HTML" title="HTML" width="30" height="30">
-  <picture>
+<table align="center"><tr><th align="center"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/brackets.svg">
+    <img src="assets/svg/icons/brackets-light.svg" alt="Languages" title="Languages — section" width="18" height="18">
+  </picture> LANGUAGES</th></tr><tr><td align="center"><img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/html5" alt="HTML" title="HTML" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/css/baa3d1">
     <img src="https://cdn.simpleicons.org/css" alt="CSS" title="CSS" width="30" height="30">
   </picture>
-  <img src="https://cdn.simpleicons.org/javascript/887b10" alt="JavaScript" title="JavaScript" width="30" height="30">
-  <picture>
+    <img src="https://cdn.simpleicons.org/javascript/887b10" alt="JavaScript" title="JavaScript" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/markdown/8c8c8c">
     <img src="https://cdn.simpleicons.org/markdown" alt="MkDocs" title="MkDocs" width="30" height="30">
-  </picture>
-</p>
+  </picture></td></tr></table>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/panels/learning.svg">
-    <img src="assets/svg/panels/learning-light.svg" alt="Learning" width="100%">
-  </picture>
-</p>
-
-<p align="center">
-  <picture>
+<table align="center"><tr><th align="center"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cap.svg">
+    <img src="assets/svg/icons/cap-light.svg" alt="Learning" title="Learning — section" width="18" height="18">
+  </picture> LEARNING</th></tr><tr><td align="center"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cloud.svg">
     <img src="assets/svg/icons/cloud-light.svg" alt="Oracle Cloud Infrastructure (OCI)" title="Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS" width="30" height="30">
   </picture>
-  &nbsp;
-  <img src="https://cdn.simpleicons.org/qemu/8c3800" alt="Virtualisation (KVM/libvirt)" title="Virtualisation (KVM/libvirt) — self-hosted VM lab: storage, networking, snapshots" width="30" height="30">
-  &nbsp;
-  <picture>
+    <img src="https://cdn.simpleicons.org/qemu/8c3800" alt="Virtualisation (KVM/libvirt)" title="Virtualisation (KVM/libvirt) — self-hosted VM lab: storage, networking, snapshots" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/openssl/c09594">
     <img src="https://cdn.simpleicons.org/openssl" alt="PKI and private certificate authorities" title="PKI and private certificate authorities — issuing, trusting and rotating certificates end to end" width="30" height="30">
   </picture>
-  &nbsp;
-  <picture>
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/chip.svg">
     <img src="assets/svg/icons/chip-light.svg" alt="Local LLM infrastructure" title="Local LLM infrastructure — hardware sizing, runtimes and serving" width="30" height="30">
   </picture>
-  &nbsp;
-  <picture>
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/spark.svg">
     <img src="assets/svg/icons/spark-light.svg" alt="AI-assisted engineering workflows" title="AI-assisted engineering workflows — agent skills, prompts and review" width="30" height="30">
   </picture>
-  &nbsp;
-  <img src="https://cdn.simpleicons.org/terraform" alt="Terraform module design and testing" title="Terraform module design and testing — reusable modules, terraform test, policy checks" width="30" height="30">
-  &nbsp;
-  <img src="https://cdn.simpleicons.org/argo/83442a" alt="GitOps and continuous delivery" title="GitOps and continuous delivery — declarative, pull-based delivery with Argo CD" width="30" height="30">
-  &nbsp;
-  <picture>
+    <img src="https://cdn.simpleicons.org/terraform" alt="Terraform module design and testing" title="Terraform module design and testing — reusable modules, terraform test, policy checks" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/argo/83442a" alt="GitOps and continuous delivery" title="GitOps and continuous delivery — declarative, pull-based delivery with Argo CD" width="30" height="30">
+    <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/opentelemetry/8c8c8c">
     <img src="https://cdn.simpleicons.org/opentelemetry" alt="Observability depth (logging and tracing)" title="Observability depth (logging and tracing) — beyond metrics: OpenTelemetry, log pipelines, traces" width="30" height="30">
-  </picture>
-</p>
+  </picture></td></tr></table>
 
 <p align="center">
   <picture>
