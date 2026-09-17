@@ -1,0 +1,25 @@
+{
+  "id": 23608725,
+  "name": "branch: main",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "mathewmusango/mathewmusango",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": [
+        "refs/heads/main"
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "non_fast_forward"
+    }
+  ],
+  "bypass_actors": []
+}
