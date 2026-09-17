@@ -5,26 +5,14 @@
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/header.svg">
     <img src="assets/svg/header-light.svg" alt="Mathew Musango Peter" width="100%">
   </picture>
+  <br>
+  <a href="https://mathewmusango.github.io/my-portfolio/" target="_blank" rel="noopener" title="Portfolio — mathewmusango.github.io"><img src="https://img.shields.io/badge/Website-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" height="30" align="center" /></a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/mathew-musango/" target="_blank" rel="noopener" title="LinkedIn — linkedin.com/in/mathew-musango"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" align="center" /></a> &nbsp;&nbsp; <a href="mailto:musangomathew@gmail.com" target="_blank" rel="noopener" title="Email — musangomathew@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" height="30" align="center" /></a> &nbsp;&nbsp; <a href="https://github.com/mathewmusango" target="_blank" rel="noopener" title="GitHub — github.com/mathewmusango"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub profile" height="30" align="center" /></a>
 </p>
 
-<p align="center">
-  <a href="https://mathewmusango.github.io/my-portfolio/" target="_blank" rel="noopener" title="Portfolio — mathewmusango.github.io"><img src="https://img.shields.io/badge/Website-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" height="30" align="center" /></a>
-  &nbsp;&nbsp; <a href="https://www.linkedin.com/in/mathew-musango/" target="_blank" rel="noopener" title="LinkedIn — linkedin.com/in/mathew-musango"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" align="center" /></a>
-  &nbsp;&nbsp; <a href="mailto:musangomathew@gmail.com" target="_blank" rel="noopener" title="Email — musangomathew@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" height="30" align="center" /></a>
-  &nbsp;&nbsp; <a href="https://github.com/mathewmusango" target="_blank" rel="noopener" title="GitHub — github.com/mathewmusango"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub profile" height="30" align="center" /></a>
-</p>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/divider.svg">
-    <img src="assets/svg/divider-light.svg" alt="" width="100%">
-  </picture>
-</p>
-
-<table align="center"><tr><th align="center"><picture>
+<table align="center"><tr><th align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/gear.svg">
     <img src="assets/svg/icons/gear-light.svg" alt="Tools" title="Tools — section" width="18" height="18">
-  </picture> TOOLS</th></tr><tr><td align="center"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
+  </picture> TOOLS</th></tr><tr><td align="center" valign="top"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
     <img src="https://cdn.simpleicons.org/terraform" alt="Terraform" title="Terraform" width="30" height="30">
     <img src="assets/svg/brands/amazonaws.svg" alt="AWS" title="AWS" width="30" height="30">
     <img src="https://cdn.simpleicons.org/googlecloud" alt="Google Cloud Platform" title="Google Cloud Platform" width="30" height="30">
@@ -100,10 +88,13 @@
   </picture>
     <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30"></td></tr></table>
 
-<table align="center"><tr><th align="center"><picture>
+<table align="center"><tr><th align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/brackets.svg">
     <img src="assets/svg/icons/brackets-light.svg" alt="Languages" title="Languages — section" width="18" height="18">
-  </picture> LANGUAGES</th></tr><tr><td align="center"><img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30">
+  </picture> LANGUAGES</th><th valign="top" width="16"></th><th align="center" valign="top"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cap.svg">
+    <img src="assets/svg/icons/cap-light.svg" alt="Learning" title="Learning — section" width="18" height="18">
+  </picture> LEARNING</th></tr><tr><td align="center" valign="top"><img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30">
     <img src="https://cdn.simpleicons.org/html5" alt="HTML" title="HTML" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/css/baa3d1">
@@ -113,12 +104,7 @@
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/markdown/8c8c8c">
     <img src="https://cdn.simpleicons.org/markdown" alt="MkDocs" title="MkDocs" width="30" height="30">
-  </picture></td></tr></table>
-
-<table align="center"><tr><th align="center"><picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cap.svg">
-    <img src="assets/svg/icons/cap-light.svg" alt="Learning" title="Learning — section" width="18" height="18">
-  </picture> LEARNING</th></tr><tr><td align="center"><picture>
+  </picture></td><td valign="top" width="16"></td><td align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cloud.svg">
     <img src="assets/svg/icons/cloud-light.svg" alt="Oracle Cloud Infrastructure (OCI)" title="Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS" width="30" height="30">
   </picture>
