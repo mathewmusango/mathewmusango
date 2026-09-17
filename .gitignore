@@ -1,10 +1,12 @@
 # What GitHub needs in order to render the profile — the allowlist. Everything not listed
 # below is local-only, and nothing below can break the page, because the page only ever reads
-# these: README.md · assets/svg/header.svg · divider.svg · footer.svg · assets/svg/panels/*.svg ·
-# assets/svg/icons/cloud.svg, chip.svg, spark.svg · assets/svg/brands/amazonaws.svg.
+# these: README.md · assets/svg/{header,divider,footer}.svg · assets/svg/panels/*.svg ·
+# assets/svg/icons/{cloud,chip,spark}.svg · the hand-kept assets/svg/brands/amazonaws.svg.
 # (The badges and glyphs under shields.io / cdn.simpleicons.org are fetched from those hosts.)
 #
-# So: retiring a card, or adding a glyph file, means editing that list too.
+# **Every generated card ships twice** — `x.svg` for GitHub's dark theme and `x-light.svg` for
+# the light one, paired in README.md by a `<picture>`. Dropping one half breaks that card in one
+# theme, so adding or retiring a card means editing this list too.
 
 __pycache__/
 *.py[cod]
