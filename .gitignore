@@ -1,7 +1,10 @@
+# Only what the page renders ships. Allowlist + reasoning: the `mathewmusango` skill.
+
 __pycache__/
 *.py[cod]
 .DS_Store
 
+# Local-only; the page renders without them. `.github/` and `LICENSE` are kept on purpose.
 .preview/
 DEVELOPING.md
 TODO.md
