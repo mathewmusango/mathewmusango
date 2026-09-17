@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="220" viewBox="0 0 1280 220" role="img" aria-label="Mathew Musango Peter">
+<title>Mathew Musango Peter</title>
+<defs><linearGradient id="hdr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0969da"/><stop offset="100%" stop-color="#218bff"/></linearGradient><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#218bff" opacity="0.16"/></pattern></defs>
+<rect width="1280" height="220" fill="#ffffff"/>
+<rect width="1280" height="220" fill="url(#dots)"/>
+<path d="M0,198 C170,185 320,211 480,198 C640,185 790,211 960,198 C1120,185 1180,211 1280,198 L1280,170 L0,170 Z" fill="url(#hdr)" opacity="0.30"/>
+<path d="M0,210 C170,200 320,220 480,210 C640,200 790,220 960,210 C1120,200 1180,220 1280,210 L1280,180 L0,180 Z" fill="#0969da" opacity="0.55"/>
+<text x="640.0" y="102" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="1.5" fill="#1f2328">Mathew Musango Peter</text>
+<rect x="570.0" y="122" width="140" height="3.5" rx="1.75" fill="url(#hdr)"/>
+<text x="640.0" y="164" text-anchor="middle" font-family="Segoe UI, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="19" font-weight="500" letter-spacing="0.6" fill="#656d76">Platform Engineering · Kubernetes · Cloud · DevSecOps · Observability</text>
+</svg>
