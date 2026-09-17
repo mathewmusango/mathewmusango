@@ -6,6 +6,5 @@ __pycache__/
 
 # Local-only; the page renders without them. `.github/` and `LICENSE` are kept on purpose.
 .preview/
-TODO.md
 data/
 scripts/
