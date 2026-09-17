@@ -6,7 +6,7 @@
     <img src="assets/svg/header-light.svg" alt="Mathew Musango Peter" width="100%">
   </picture>
   <br>
-  <a href="https://mathewmusango.github.io/my-portfolio/" target="_blank" rel="noopener" title="Portfolio — mathewmusango.github.io"><img src="https://img.shields.io/badge/Website-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" height="30" align="center" /></a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/mathew-musango/" target="_blank" rel="noopener" title="LinkedIn — linkedin.com/in/mathew-musango"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" align="center" /></a> &nbsp;&nbsp; <a href="mailto:musangomathew@gmail.com" target="_blank" rel="noopener" title="Email — musangomathew@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" height="30" align="center" /></a> &nbsp;&nbsp; <a href="https://github.com/mathewmusango" target="_blank" rel="noopener" title="GitHub — github.com/mathewmusango"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub profile" height="30" align="center" /></a>
+  <a href="https://mathewmusango.github.io/my-portfolio/" target="_blank" rel="noopener" title="Portfolio — mathewmusango.github.io"><img src="https://img.shields.io/badge/Website-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" height="30" align="center" /></a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/mathew-musango/" target="_blank" rel="noopener" title="LinkedIn — linkedin.com/in/mathew-musango"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" align="center" /></a> &nbsp;&nbsp; <a href="mailto:musangomathew@gmail.com" target="_blank" rel="noopener" title="Email — musangomathew@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" height="30" align="center" /></a>
 </p>
 
 <table align="center"><tr><th align="center" valign="top"><picture>
@@ -91,10 +91,7 @@
 <table align="center"><tr><th align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/brackets.svg">
     <img src="assets/svg/icons/brackets-light.svg" alt="Languages" title="Languages — section" width="18" height="18">
-  </picture> LANGUAGES</th><th valign="top" width="16"></th><th align="center" valign="top"><picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cap.svg">
-    <img src="assets/svg/icons/cap-light.svg" alt="Learning" title="Learning — section" width="18" height="18">
-  </picture> LEARNING</th></tr><tr><td align="center" valign="top"><img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30">
+  </picture> LANGUAGES</th></tr><tr><td align="center" valign="top"><img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30">
     <img src="https://cdn.simpleicons.org/html5" alt="HTML" title="HTML" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/css/baa3d1">
@@ -104,42 +101,6 @@
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/markdown/8c8c8c">
     <img src="https://cdn.simpleicons.org/markdown" alt="MkDocs" title="MkDocs" width="30" height="30">
-  </picture></td><td valign="top" width="16"></td><td align="center" valign="top"><picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cloud.svg">
-    <img src="assets/svg/icons/cloud-light.svg" alt="Oracle Cloud Infrastructure (OCI)" title="Oracle Cloud Infrastructure (OCI) — the second cloud alongside AWS" width="30" height="30">
-  </picture>
-    <img src="https://cdn.simpleicons.org/qemu/8c3800" alt="Virtualisation (KVM/libvirt)" title="Virtualisation (KVM/libvirt) — self-hosted VM lab: storage, networking, snapshots" width="30" height="30">
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/openssl/c09594">
-    <img src="https://cdn.simpleicons.org/openssl" alt="PKI and private certificate authorities" title="PKI and private certificate authorities — issuing, trusting and rotating certificates end to end" width="30" height="30">
-  </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/chip.svg">
-    <img src="assets/svg/icons/chip-light.svg" alt="Local LLM infrastructure" title="Local LLM infrastructure — hardware sizing, runtimes and serving" width="30" height="30">
-  </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/ollama/8c8c8c">
-    <img src="https://cdn.simpleicons.org/ollama" alt="Ollama (local LLM runtime)" title="Ollama (local LLM runtime) — running models locally — quantisation, GPU sizing, serving" width="30" height="30">
-  </picture>
-    <img src="https://cdn.simpleicons.org/huggingface" alt="Hugging Face (model hub)" title="Hugging Face (model hub) — sourcing and evaluating models to run locally" width="30" height="30">
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/spark.svg">
-    <img src="assets/svg/icons/spark-light.svg" alt="AI-assisted engineering workflows" title="AI-assisted engineering workflows — agent skills, prompts and review" width="30" height="30">
-  </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/zedindustries/90aee9">
-    <img src="https://cdn.simpleicons.org/zedindustries" alt="Zed (AI-assisted editor)" title="Zed (AI-assisted editor) — the editor and agent workflow he actually uses" width="30" height="30">
-  </picture>
-    <img src="https://cdn.simpleicons.org/claude" alt="Claude (Anthropic models)" title="Claude (Anthropic models) — AI-assisted engineering workflows in practice" width="30" height="30">
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/anthropic/989898">
-    <img src="https://cdn.simpleicons.org/anthropic" alt="Anthropic (model vendor)" title="Anthropic (model vendor) — the platform behind Claude and its API" width="30" height="30">
-  </picture>
-    <img src="https://cdn.simpleicons.org/terraform" alt="Terraform module design and testing" title="Terraform module design and testing — reusable modules, terraform test, policy checks" width="30" height="30">
-    <img src="https://cdn.simpleicons.org/argo/83442a" alt="GitOps and continuous delivery" title="GitOps and continuous delivery — declarative, pull-based delivery with Argo CD" width="30" height="30">
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/opentelemetry/8c8c8c">
-    <img src="https://cdn.simpleicons.org/opentelemetry" alt="Observability depth (logging and tracing)" title="Observability depth (logging and tracing) — beyond metrics: OpenTelemetry, log pipelines, traces" width="30" height="30">
   </picture></td></tr></table>
 
 <p align="center">
