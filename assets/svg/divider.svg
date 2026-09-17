@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="26" viewBox="0 0 1280 26" aria-hidden="true">
-<defs><linearGradient id="lineL" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00897b" stop-opacity="0.55"/><stop offset="100%" stop-color="#4db6ac"/></linearGradient><linearGradient id="lineR" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4db6ac"/><stop offset="100%" stop-color="#00897b" stop-opacity="0.55"/></linearGradient></defs>
+<defs><linearGradient id="lineL" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1f6feb" stop-opacity="0.55"/><stop offset="100%" stop-color="#58a6ff"/></linearGradient><linearGradient id="lineR" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#58a6ff"/><stop offset="100%" stop-color="#1f6feb" stop-opacity="0.55"/></linearGradient></defs>
 <rect x="0" y="12.2" width="606.0" height="1.6" fill="url(#lineL)"/>
 <rect x="674.0" y="12.2" width="606.0" height="1.6" fill="url(#lineR)"/>
-<rect x="616.0" y="9" width="48" height="8" rx="4" fill="#4db6ac" opacity="0.12"/>
-<rect x="635.0" y="8" width="10" height="10" rx="2" fill="#4db6ac" transform="rotate(45 640.0 13)"/>
+<rect x="616.0" y="9" width="48" height="8" rx="4" fill="#58a6ff" opacity="0.12"/>
+<rect x="635.0" y="8" width="10" height="10" rx="2" fill="#58a6ff" transform="rotate(45 640.0 13)"/>
 </svg>

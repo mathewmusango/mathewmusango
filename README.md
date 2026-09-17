@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://mathewmusango.github.io/my-portfolio/" target="_blank" rel="noopener" title="Portfolio — mathewmusango.github.io"><img src="https://img.shields.io/badge/Website-00897b?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" height="30" align="center" /></a><br>
+  <a href="https://mathewmusango.github.io/my-portfolio/" target="_blank" rel="noopener" title="Portfolio — mathewmusango.github.io"><img src="https://img.shields.io/badge/Website-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" height="30" align="center" /></a><br>
   <a href="https://www.linkedin.com/in/mathew-musango/" target="_blank" rel="noopener" title="LinkedIn — linkedin.com/in/mathew-musango"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="30" align="center" /></a><br>
   <a href="mailto:musangomathew@gmail.com" target="_blank" rel="noopener" title="Email — musangomathew@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" height="30" align="center" /></a><br>
   <a href="https://github.com/mathewmusango" target="_blank" rel="noopener" title="GitHub — github.com/mathewmusango"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub profile" height="30" align="center" /></a>
