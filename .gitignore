@@ -1,18 +1,7 @@
-# Only what the page renders ships, and this is the allowlist it reads: README.md ·
-# assets/svg/{header,divider,footer}.svg · assets/svg/icons/*.svg · the hand-kept
-# assets/svg/brands/amazonaws.svg — every generated file in both a dark and a `-light` version.
-# Ignoring any of those breaks the live profile. Why the rest is local-only, and what shipping
-# so little costs, are recorded in the `mathewmusango` skill.
-#
-# Two traps, both already hit: **gitignore does not untrack a file that is already tracked**, so
-# each entry here was also `git rm --cached`'d; and `.github/` + `LICENSE` are kept even though
-# they are not render inputs, because a workflow only runs once it is committed.
-
 __pycache__/
 *.py[cod]
 .DS_Store
 
-# Local-only: the generator, its input lists, the working docs and the preview sheets.
 .preview/
 DEVELOPING.md
 TODO.md
