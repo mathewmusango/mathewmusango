@@ -12,7 +12,7 @@
 <table align="center"><tr><th align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/gear.svg">
     <img src="assets/svg/icons/gear-light.svg" alt="Tools" title="Tools — section" width="18" height="18">
-  </picture> TOOLS</th></tr><tr><td align="center" valign="top" width="420"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
+  </picture> TOOLS</th></tr><tr><td align="center" valign="top" width="520"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
     <img src="https://cdn.simpleicons.org/terraform" alt="Terraform" title="Terraform" width="30" height="30">
     <img src="assets/svg/brands/amazonaws.svg" alt="AWS" title="AWS" width="30" height="30">
     <img src="https://cdn.simpleicons.org/googlecloud" alt="Google Cloud Platform" title="Google Cloud Platform" width="30" height="30">
