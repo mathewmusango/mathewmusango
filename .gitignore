@@ -1,10 +1,11 @@
-# Only what the page renders ships. Allowlist + reasoning: the `mathewmusango` skill.
+# Only what the page renders ships, plus the local check stack. Allowlist + reasoning: the `mathewmusango` skill.
 
 __pycache__/
 *.py[cod]
 .DS_Store
 
-# Local-only; the page renders without them. `.github/` and `LICENSE` are kept on purpose.
+# Local-only; the page renders without them. `.github/`, `LICENSE` and `scripts/checks/` are kept on purpose.
 .preview/
 data/
-scripts/
+scripts/*
+!scripts/checks/
