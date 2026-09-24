@@ -1,4 +1,4 @@
-# container/checks (compose services)
+# containers/checks (compose services)
 
 One compose service per check surface, each pinned to a purpose-built tool image and running the **exact command** its CI counterpart runs. The point is parity: a green container here means the same thing as a green CI job.
 
@@ -11,7 +11,7 @@ scripts/checks/local.sh yaml-syntax   # diff-gated, the normal way
 Raw compose, for running one service by hand:
 
 ```sh
-podman-compose -f container/checks/compose.yml run --rm yaml-syntax
+podman-compose -f containers/checks/compose.yml run --rm yaml-syntax
 ```
 
 ## Services

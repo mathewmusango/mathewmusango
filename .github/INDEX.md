@@ -1,7 +1,5 @@
 # .github
 
-Named `INDEX.md`, not `README.md`, on purpose: GitHub renders a `.github/README.md` as the repository's landing page, ahead of the root `README.md`, so a config index under that name would replace this repository's page.
-
 | File | What it is |
 | --- | --- |
 | [`CODEOWNERS`](CODEOWNERS) | `* @mathewmusango` — one line, no exceptions |
@@ -19,12 +17,12 @@ Where each one acts, and whether it can hold back a merge.
 | --- | --- | --- |
 | Push protection | `git push`, before the pull request exists | **Yes** — the push is refused |
 | Native secret scanning | the whole repository, every branch | No — an alert in the Security tab |
-| `secrets / gitleaks` | CI, on the pull request | No — nothing is required on `main` |
-| `deps / dependency-review` | CI, on the pull-request diff | No — nothing is required on `main` |
-| CodeQL | the pull request's analysis, and the `main`/weekly baseline | No — the ruleset has no `code_scanning` rule |
+| `secrets / gitleaks` | CI, on the pull request — a required context | **Yes** |
+| `deps / dependency-review` | CI, on the pull-request diff — a required context | **Yes** |
+| `Analyze (…)` + the `code_scanning` rule | the pull request's analysis, and the `main`/weekly baseline | **Yes** — on alerts at `high_or_higher` |
 | Dependabot alerts | the dependency graph, from the default branch | No — it answers with a patch pull request |
 
-Only the push is blocked today: the live ruleset on `main` carries no required checks, so every CI surface below is advisory. [`rulesets/`](../rulesets/README.md) holds both what it does enforce and the shape it is set out to enforce.
+**Nothing above is advisory.** The live ruleset on `main` requires the five contexts the caller reports — `shell / shellcheck` · `yaml / syntax` · `yaml / actionlint` · `secrets / gitleaks` · `deps / dependency-review` — so a merge is gated on them, and `code_scanning` blocks a pull request carrying an alert at `high_or_higher`. [`rulesets/`](../rulesets/README.md) holds the record.
 
 ## Settings that are not files
 
@@ -32,7 +30,7 @@ Set by hand; a clone or a pull carries none of them.
 
 | Setting | State |
 | --- | --- |
-| Rulesets | **live:** `deletion` + `non_fast_forward` only — no pull-request rule and no required checks, so direct pushes are allowed. The target shape — pull requests only, one approval, squash, four required checks, no bypass — is recorded in [`../rulesets/`](../rulesets/README.md) and is **not applied yet** |
+| Rulesets | **applied** — `branch: main` (id `23608725`, active): `pull_request` (one approval, squash only, stale reviews dismissed, threads resolved), `required_status_checks` ×5, `required_signatures`, `code_scanning`, `creation` · `deletion` · `non_fast_forward`, and `bypass_actors: []`. Recorded in [`../rulesets/`](../rulesets/README.md) |
 | Labels | `dependencies` · `github-actions` — the two `dependabot.yml` names exist |
 | Push protection | on |
 | Secret scanning | on |

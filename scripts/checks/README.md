@@ -9,7 +9,7 @@ scripts/checks/local.sh --full -v    # …and list the files each surface scans
 scripts/checks/local.sh shell        # selected surfaces only
 ```
 
-Diff-gated by default: changed files come from `origin/main...HEAD` plus the staged and unstaged working tree, and a surface with no matching files **skips** rather than runs — the same skip-model CI uses. Each selected surface runs as a service from [`container/checks/`](../../container/checks/README.md), where the images and commands are declared. The exit code is 0 only if every surface that ran passed.
+Diff-gated by default: changed files come from `origin/main...HEAD` plus the staged and unstaged working tree, and a surface with no matching files **skips** rather than runs — the same skip-model CI uses. Each selected surface runs as a service from [`containers/checks/`](../../containers/checks/README.md), where the images and commands are declared. The exit code is 0 only if every surface that ran passed.
 
 **Why this folder is committed** when the rest of `scripts/` is not: `.gitignore` ships only what the page renders, and the local check stack is the one toolchain that has to travel with the repository. `scripts/checks/` is carved out of that allowlist for it; the generator stays local.
 
