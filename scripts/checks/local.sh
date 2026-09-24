@@ -43,6 +43,7 @@ changed_files() {
   fi
   git diff --name-only --diff-filter=ACM
   git diff --cached --name-only --diff-filter=ACM
+  git ls-files --others --exclude-standard
 }
 
 if [ "$MODE" = "diff" ]; then
@@ -88,7 +89,7 @@ for svc in $SURFACES; do
   if [ "$VERBOSE" -eq 1 ]; then
     surface_files "$svc" | sed 's#^#    #'
   fi
-  if podman-compose -f container/checks/compose.yml run --rm "$svc"; then
+  if podman-compose -f containers/checks/compose.yml run --rm "$svc"; then
     printf '%s✅ %s (%s) passed%s\n' "$GREEN" "$svc" "$reason" "$NC"
   else
     printf '%s❌ %s (%s) failed%s\n' "$RED" "$svc" "$reason" "$NC"
