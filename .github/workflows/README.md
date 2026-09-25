@@ -33,4 +33,4 @@
 
 - Push and pull requests to `main`, weekly, and manual dispatch. Matrix: `actions` only, `build-mode: none`, on `security-extended`.
 - `security-events: write` + `contents: read` on the job; every action SHA-pinned with a version comment.
-- Alerts land in the Security tab and are advisory: the ruleset carries no `code_scanning` rule here, so a finding does not hold up a merge.
+- Alerts land in the Security tab **and gate the merge**: the `branch: main` ruleset carries a `code_scanning` rule for CodeQL — `high_or_higher` on security alerts, `errors` on the analysis — so a finding at that level holds the merge until it is fixed or dismissed.
