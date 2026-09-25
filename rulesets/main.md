@@ -34,6 +34,6 @@ gh api repos/mathewmusango/mathewmusango/rulesets
 gh api --method PUT repos/mathewmusango/mathewmusango/rulesets/23608725 --input rulesets/main.json
 ```
 
-**Verified.** Read back with `gh api repos/mathewmusango/mathewmusango/rulesets` on 2026-09-23: one ruleset, `branch: main`, `active`, five required contexts, no bypass actors. A context joins the required set only after a run has reported it, so the set holds what has actually run.
+**Verified.** Read back with `gh api repos/mathewmusango/mathewmusango/rulesets` on 2026-09-23, and re-read 2026-09-25: two rulesets now — this one, and [`branches: all`](all.md) for the branch-name gate. Five required contexts, no bypass actors. A context joins the required set only after a run has reported it, so the set holds what has actually run — `policies / branch` joined on 2026-09-25 and was removed the same day, once it was clear a `create:`-only context can never be satisfied on a branch that is pushed to again.
 
 **Change flow.** Edit the JSON (export format) → apply it → update this record in the same pull request.
