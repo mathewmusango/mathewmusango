@@ -6,7 +6,6 @@
 | [`dependabot.yml`](dependabot.yml) | the `github-actions` default, and nothing else — no package manifest here means no ecosystem entry |
 | [`workflows/checks.yml`](workflows/checks.yml) | shared checks, one caller job per surface |
 | [`workflows/security.yml`](workflows/security.yml) | the secret scanners — `secrets`, `gitguardian`, `deps` — split from `checks.yml` |
-| [`workflows/branch-policy.yml`](workflows/branch-policy.yml) | the branch-name policy, reported from a `create:` trigger as `policies / branch` |
 | [`workflows/codeql.yml`](workflows/codeql.yml) | CodeQL for `actions` |
 
 The workflows are documented beside them: [`workflows/`](workflows/README.md).
