@@ -5,6 +5,7 @@
 - One purpose per file, named for the task — `checks.yml`, `codeql.yml`. A second file for the same kind of job takes the `{task}-{language|resource}` form.
 - Display names are quoted: an unquoted colon+space is invalid YAML.
 - The ruleset on `main` is in [`rulesets/`](../../rulesets/README.md); the rest of `.github/` is indexed in [`.github/`](../INDEX.md).
+- Branch names are enforced by the `branches: all` ruleset, not by a workflow — a `create:`-triggered check fires only after the ref exists, so it could report but never prevent. See [`rulesets/`](../../rulesets/README.md).
 
 ## `checks.yml`
 
@@ -27,11 +28,6 @@
 | `secrets` | `security-gitleaks.yml` | `secrets / gitleaks` |
 | `gitguardian` | `security-gitguardian.yml` | `gitguardian / gitguardian` — needs the `GITGUARDIAN_API_KEY` secret; **not** a required check |
 | `deps` | `security-deps.yml` | `deps / dependency-review` — pull requests only |
-
-## `branch-policy.yml`
-
-- **Trigger:** `create:` only. It holds no logic: one job, `policies`, calls the shared `branch-policy.yml` leaf in `mathewmusango/my-workflows`, at the same SHA-pin and tag comment as `checks.yml`. It reports as `policies / branch` and is **not** a required check.
-- **It reports, it does not block.** A `create:`-triggered job fires *after* the ref exists, so the name is already made; `main` and `dependabot/*` pass, and anything else takes a typed prefix — `feature/`, `fix/`, `docs/`, `ci/`, `infra/`, `security/`, `governance/`, `deps/`, `content/` (not `chore/`, not `feat/`).
 
 ## `codeql.yml`
 

@@ -21,11 +21,7 @@ The excludes *are* the allow-list:
 | --- | --- |
 | `refs/heads/main` | the default branch |
 | `refs/heads/dependabot/*` · `/*/*` · `/*/*/*` · `/*/*/*/*` | four levels, so a monorepo branch such as `dependabot/npm_and_yarn/packages/app/foo-1.0.0` is not refused |
-| `refs/heads/feature/*` · `fix/*` · `docs/*` · `ci/*` · `infra/*` · `security/*` · `governance/*` · `deps/*` · `content/*` | one path segment each, matching the branch-policy leaf's slug shape |
-
-**`**` does not work here.** GitHub uses `File::FNM_PATHNAME` and does not support `File::FNM_EXTGLOB`, so `*` does not cross `/` and `**` matches **nothing at all** — silently, with no error to warn you. One pattern per level is the consequence.
-
-**What this cannot enforce.** The slug charset, `[a-z0-9]+([._-][a-z0-9]+)*`. Patterns cannot express it, so `ci/Bad_Slug` remains creatable. The `branch-policy.yml` leaf reports that case as `policies / branch` — deliberately **not** a required context, because a `create:`-only check can never be satisfied on a branch that is pushed again (or rebased by Dependabot).
+| `refs/heads/feature/*` · `fix/*` · `docs/*` · `ci/*` · `infra/*` · `security/*` · `governance/*` · `deps/*` · `content/*` | one path segment each |
 
 ## Applying
 
