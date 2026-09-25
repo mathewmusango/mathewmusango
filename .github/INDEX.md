@@ -33,7 +33,7 @@ Set by hand; a clone or a pull carries none of them.
 
 | Setting | State |
 | --- | --- |
-| Rulesets | **applied** — `branch: main` (id `23608725`, active): `pull_request` (one approval, squash only, stale reviews dismissed, threads resolved), `required_status_checks` ×5, `required_signatures`, `code_scanning`, `creation` · `deletion` · `non_fast_forward`, and `bypass_actors: []`. Recorded in [`../rulesets/`](../rulesets/README.md) |
+| Rulesets | **applied** — two. `branch: main` (id `23608725`, active): `pull_request` (one approval, squash only, stale reviews dismissed, threads resolved), `required_status_checks` ×5, `required_signatures`, `code_scanning`, `creation` · `deletion` · `non_fast_forward`, `bypass_actors: []`. `branches: all` (id `24007901`, active): the branch-name gate — `creation` on every branch except the allowed prefixes, one rule only, no bypass. Recorded in [`../rulesets/`](../rulesets/README.md) |
 | Labels | `dependencies` · `github-actions` — the two `dependabot.yml` names exist |
 | Push protection | on |
 | Secret scanning | on |
