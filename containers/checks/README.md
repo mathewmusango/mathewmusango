@@ -19,7 +19,7 @@ podman-compose -f containers/checks/compose.yml run --rm yaml-syntax
 | Service | Image | Runs |
 | --- | --- | --- |
 | `shell` | `koalaman/shellcheck-alpine` | `shellcheck -S warning` over `*.sh` + `.githooks/` |
-| `yaml-actionlint` | `rhysd/actionlint` | `actionlint` over the workflows |
+| `yaml` | `rhysd/actionlint` | `actionlint` over the workflows |
 | `yaml-syntax` | `ruby:alpine` | `ruby -ryaml` over every `*.yml` / `*.yaml` |
 
 `secrets` and `deps` have no service here on purpose: `gitleaks` and `dependency-review` are CI-only surfaces, the second because it reads a pull-request diff.

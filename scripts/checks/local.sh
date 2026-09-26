@@ -12,7 +12,7 @@ else
   BOLD=""; GREEN=""; YELLOW=""; RED=""; NC=""
 fi
 
-ALL="shell yaml-actionlint yaml-syntax"
+ALL="shell yaml yaml-syntax"
 MODE="diff"
 VERBOSE=0
 SURFACES=""
@@ -53,14 +53,14 @@ fi
 surface_glob() {
   case "$1" in
     shell)                       printf '%s' '\.sh$|(^|/)\.githooks/' ;;
-    yaml-actionlint|yaml-syntax) printf '%s' '\.ya?ml$' ;;
+    yaml|yaml-syntax) printf '%s' '\.ya?ml$' ;;
   esac
 }
 
 surface_touched() {
   case "$1" in
     shell)                       grep -qE '\.sh$|(^|/)\.githooks/' || return 1 ;;
-    yaml-actionlint|yaml-syntax) grep -qE '\.ya?ml$' || return 1 ;;
+    yaml|yaml-syntax) grep -qE '\.ya?ml$' || return 1 ;;
   esac
 }
 

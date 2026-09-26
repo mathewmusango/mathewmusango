@@ -11,7 +11,7 @@ services:
       - |
         find . -path './.git' -prune -o -type f \( -name '*.sh' -o -path './.githooks/*' \) -print0 2>/dev/null | xargs -0 -r shellcheck -S warning
 
-  yaml-actionlint:
+  yaml:
     image: docker.io/rhysd/actionlint:latest
     working_dir: /repo
     volumes:
