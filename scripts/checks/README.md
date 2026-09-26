@@ -18,7 +18,7 @@ Diff-gated by default: changed files come from `origin/main...HEAD` plus the sta
 | Surface | Checks | Locally, without a container |
 | --- | --- | --- |
 | `shell` | `shellcheck -S warning` across `*.sh` and `.githooks/` | `shellcheck -S warning <files>` |
-| `yaml-actionlint` | `actionlint` across `.github/workflows/` | `actionlint` |
+| `yaml` | `actionlint` across `.github/workflows/` | `actionlint` |
 | `yaml-syntax` | every `*.yml` / `*.yaml` parses | `ruby -ryaml -e 'YAML.load_file(ARGV[0])' <file>` |
 
 The third column is a convenience, not a proof: it uses the host's tool versions rather than the container's, so a pass there says nothing about CI.
