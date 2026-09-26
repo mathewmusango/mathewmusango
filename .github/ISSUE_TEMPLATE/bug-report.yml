@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a problem with the profile
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue.
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: Which script, badge or generated section?
+      placeholder: <path>
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually happened?
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - github.com rendering
+        - Local (Linux)
+        - CI (GitHub Actions)
+        - Other
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, logs, console errors, etc.
