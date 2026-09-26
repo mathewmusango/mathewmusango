@@ -38,3 +38,7 @@ It runs through podman, never host tools. Bypass it deliberately with `git commi
 
 > [!WARNING]
 > A README or any other non-shell file under `.githooks/` makes `shellcheck` fail.
+
+## Files
+
+- [`local.sh`](local.sh) — the driver (POSIX sh)
