@@ -8,34 +8,3 @@
 | [`workflows/checks.yml`](workflows/checks.yml) | shared checks, one caller job per surface |
 | [`workflows/security.yml`](workflows/security.yml) | the secret scanners — `secrets`, `deps` — split from `checks.yml` |
 | [`workflows/codeql.yml`](workflows/codeql.yml) | CodeQL for `actions` |
-
-The workflows are documented beside them: [`workflows/`](workflows/README.md).
-
-## Security surfaces
-
-Where each one acts, and whether it can hold back a merge.
-
-| Surface | Where it acts | Blocks a merge? |
-| --- | --- | --- |
-| Push protection | `git push`, before the pull request exists | **Yes** — the push is refused |
-| Native secret scanning | the whole repository, every branch | No — an alert in the Security tab |
-| `secrets / gitleaks` | CI, on the pull request — a required context | **Yes** |
-| `deps / dependency-review` | CI, on the pull-request diff — a required context | **Yes** |
-| `Analyze (…)` + the `code_scanning` rule | the pull request's analysis, and the `main`/weekly baseline | **Yes** — on alerts at `high_or_higher` |
-| Dependabot alerts | the dependency graph, from the default branch | No — it answers with a patch pull request |
-
-**Nothing above is advisory.** The live ruleset on `main` requires the five contexts the two caller files report — `shell / shellcheck` · `yaml / syntax` · `yaml / actionlint` · `secrets / gitleaks` · `deps / dependency-review` — so a merge is gated on them, and `code_scanning` blocks a pull request carrying an alert at `high_or_higher`. [`rulesets/`](../rulesets/README.md) holds the record.
-
-## Settings that are not files
-
-Set by hand; a clone or a pull carries none of them.
-
-| Setting | State |
-| --- | --- |
-| Rulesets | **applied** — two. `branch: main` (id `23608725`, active): `pull_request` (one approval, squash only, stale reviews dismissed, threads resolved), `required_status_checks` ×5, `required_signatures`, `code_scanning`, `creation` · `deletion` · `non_fast_forward`, `bypass_actors: []`. `branches: all` (id `24007901`, active): the branch-name gate — `creation` on every branch except the allowed prefixes, one rule only, no bypass. Recorded in [`../rulesets/`](../rulesets/README.md) |
-| Labels | `dependencies` · `github-actions` — the two `dependabot.yml` names exist |
-| Push protection | on |
-| Secret scanning | on |
-| Private vulnerability reporting | on — hence the **Security → Report a vulnerability** route in [`SECURITY.md`](../SECURITY.md) |
-| Non-provider secret patterns | **off** — free here, and the only cover for a secret no provider pattern matches |
-| Secret validity checks | **off** — free here, and it separates a live secret from a dead one |
