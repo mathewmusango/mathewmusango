@@ -23,7 +23,7 @@
     <img src="https://cdn.simpleicons.org/podman" alt="Podman" title="Podman" width="30" height="30">
   </picture>
     <img src="https://cdn.simpleicons.org/cilium/886c0d" alt="Cilium" title="Cilium" width="30" height="30">
-    <img src="assets/svg/brands/calico.png" alt="Calico" title="Calico" width="30" height="30">
+    <img src="assets/svg/brands/calico.svg" alt="Calico" title="Calico" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/metallb-dark.svg">
     <img src="assets/svg/brands/metallb.svg" alt="MetalLB" title="MetalLB" width="30" height="30">
@@ -57,7 +57,7 @@
     <img src="https://cdn.simpleicons.org/fortinet" alt="FortiGate" title="FortiGate" width="30" height="30">
     <img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" title="GitHub Actions" width="30" height="30">
     <img src="https://cdn.simpleicons.org/gitlab/8b3c15" alt="GitLab" title="GitLab" width="30" height="30">
-    <img src="assets/svg/brands/artifactory.png" alt="Artifactory" title="Artifactory" width="30" height="30">
+    <img src="assets/svg/brands/artifactory.svg" alt="Artifactory" title="Artifactory" width="30" height="30">
     <img src="https://cdn.simpleicons.org/jenkins" alt="Jenkins" title="Jenkins" width="30" height="30">
     <img src="assets/svg/brands/sonarqube.svg" alt="SonarQube" title="SonarQube" width="30" height="30">
     <img src="https://cdn.simpleicons.org/ansible" alt="Ansible" title="Ansible" width="30" height="30">
@@ -102,16 +102,22 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/logstash/8cb2bf">
     <img src="https://cdn.simpleicons.org/logstash" alt="Logstash" title="Logstash" width="30" height="30">
   </picture>
-    <img src="assets/svg/brands/loki.png" alt="Loki" title="Loki" width="30" height="30">
-    <img src="assets/svg/brands/tempo.png" alt="Tempo" title="Tempo" width="30" height="30">
-    <img src="assets/svg/brands/mimir.png" alt="Mimir" title="Mimir" width="30" height="30">
-    <img src="assets/svg/brands/wazuh.png" alt="Wazuh" title="Wazuh" width="30" height="30">
+    <img src="assets/svg/brands/loki.svg" alt="Loki" title="Loki" width="30" height="30">
+    <img src="assets/svg/brands/tempo.svg" alt="Tempo" title="Tempo" width="30" height="30">
+    <img src="assets/svg/brands/mimir.svg" alt="Mimir" title="Mimir" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/wazuh-dark.svg">
+    <img src="assets/svg/brands/wazuh.svg" alt="Wazuh" title="Wazuh" width="30" height="30">
+  </picture>
     <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/markdown/8c8c8c">
     <img src="https://cdn.simpleicons.org/markdown" alt="MkDocs" title="MkDocs" width="30" height="30">
   </picture>
-    <img src="assets/svg/brands/kroki.png" alt="Kroki" title="Kroki" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/kroki-dark.svg">
+    <img src="assets/svg/brands/kroki.svg" alt="Kroki" title="Kroki" width="30" height="30">
+  </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/opentelemetry/8c8c8c">
     <img src="https://cdn.simpleicons.org/opentelemetry" alt="OpenTelemetry" title="OpenTelemetry" width="30" height="30">
