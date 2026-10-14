@@ -23,10 +23,7 @@
     <img src="https://cdn.simpleicons.org/podman" alt="Podman" title="Podman" width="30" height="30">
   </picture>
     <img src="https://cdn.simpleicons.org/cilium/886c0d" alt="Cilium" title="Cilium" width="30" height="30">
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/calico.svg">
-    <img src="assets/svg/icons/calico-light.svg" alt="Calico" title="Calico" width="30" height="30">
-  </picture>
+    <img src="assets/svg/brands/calico.svg" alt="Calico" title="Calico" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/metallb-dark.svg">
     <img src="assets/svg/brands/metallb.svg" alt="MetalLB" title="MetalLB" width="30" height="30">
@@ -40,10 +37,7 @@
     <img src="https://cdn.simpleicons.org/centos" alt="CentOS" title="CentOS" width="30" height="30">
   </picture>
     <img src="https://cdn.simpleicons.org/vmware" alt="VMware" title="VMware" width="30" height="30">
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/server.svg">
-    <img src="assets/svg/icons/server-light.svg" alt="Hyper-V" title="Hyper-V" width="30" height="30">
-  </picture>
+    <img src="assets/svg/brands/hyperv.png" alt="Hyper-V" title="Hyper-V" width="30" height="30">
     <img src="https://cdn.simpleicons.org/minio" alt="MinIO" title="MinIO" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/qnap/92a1c7">
@@ -63,10 +57,7 @@
     <img src="https://cdn.simpleicons.org/fortinet" alt="FortiGate" title="FortiGate" width="30" height="30">
     <img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" title="GitHub Actions" width="30" height="30">
     <img src="https://cdn.simpleicons.org/gitlab/8b3c15" alt="GitLab" title="GitLab" width="30" height="30">
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cube.svg">
-    <img src="assets/svg/icons/cube-light.svg" alt="Artifactory" title="Artifactory" width="30" height="30">
-  </picture>
+    <img src="assets/svg/brands/artifactory.svg" alt="Artifactory" title="Artifactory" width="30" height="30">
     <img src="https://cdn.simpleicons.org/jenkins" alt="Jenkins" title="Jenkins" width="30" height="30">
     <img src="assets/svg/brands/sonarqube.svg" alt="SonarQube" title="SonarQube" width="30" height="30">
     <img src="https://cdn.simpleicons.org/ansible" alt="Ansible" title="Ansible" width="30" height="30">
@@ -81,10 +72,7 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/trivy/988eee">
     <img src="https://cdn.simpleicons.org/trivy" alt="Trivy" title="Trivy" width="30" height="30">
   </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/clair.svg">
-    <img src="assets/svg/icons/clair-light.svg" alt="Clair" title="Clair" width="30" height="30">
-  </picture>
+    <img src="assets/svg/brands/clair.png" alt="Clair" title="Clair" width="30" height="30">
     <img src="https://cdn.simpleicons.org/git" alt="Git" title="Git" width="30" height="30">
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/979797">
@@ -114,21 +102,12 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/logstash/8cb2bf">
     <img src="https://cdn.simpleicons.org/logstash" alt="Logstash" title="Logstash" width="30" height="30">
   </picture>
+    <img src="assets/svg/brands/loki.svg" alt="Loki" title="Loki" width="30" height="30">
+    <img src="assets/svg/brands/tempo.svg" alt="Tempo" title="Tempo" width="30" height="30">
+    <img src="assets/svg/brands/mimir.svg" alt="Mimir" title="Mimir" width="30" height="30">
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/loki.svg">
-    <img src="assets/svg/icons/loki-light.svg" alt="Loki" title="Loki" width="30" height="30">
-  </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/tempo.svg">
-    <img src="assets/svg/icons/tempo-light.svg" alt="Tempo" title="Tempo" width="30" height="30">
-  </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/chart.svg">
-    <img src="assets/svg/icons/chart-light.svg" alt="Mimir" title="Mimir" width="30" height="30">
-  </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/wazuh.svg">
-    <img src="assets/svg/icons/wazuh-light.svg" alt="Wazuh" title="Wazuh" width="30" height="30">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/wazuh-dark.svg">
+    <img src="assets/svg/brands/wazuh.svg" alt="Wazuh" title="Wazuh" width="30" height="30">
   </picture>
     <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30">
     <picture>
@@ -136,8 +115,8 @@
     <img src="https://cdn.simpleicons.org/markdown" alt="MkDocs" title="MkDocs" width="30" height="30">
   </picture>
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/kroki.svg">
-    <img src="assets/svg/icons/kroki-light.svg" alt="Kroki" title="Kroki" width="30" height="30">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/kroki-dark.svg">
+    <img src="assets/svg/brands/kroki.svg" alt="Kroki" title="Kroki" width="30" height="30">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/opentelemetry/8c8c8c">
@@ -162,10 +141,6 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/linuxfoundation/8ca5c2">
     <img src="https://cdn.simpleicons.org/linuxfoundation" alt="Linux Foundation" title="Linux Foundation" width="30" height="30">
   </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/cncf/9c9a9b">
-    <img src="https://cdn.simpleicons.org/cncf" alt="CNCF" title="CNCF" width="30" height="30">
-  </picture>
     <img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
     <img src="https://cdn.simpleicons.org/google" alt="Google" title="Google" width="30" height="30">
     <picture>
@@ -177,7 +152,7 @@
 <table align="center"><tr><th align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/globe.svg">
     <img src="assets/svg/icons/globe-light.svg" alt="Spoken Languages" title="Spoken Languages — section" width="18" height="18">
-  </picture> SPOKEN LANGUAGES</th></tr><tr><td align="center" valign="top"><img src="assets/svg/brands/gb.svg" alt="" title="English (fully proficient)" width="18"> English (fully proficient) · <img src="assets/svg/brands/ke.svg" alt="" title="Swahili (native / fluent)" width="18"> Swahili (native / fluent)</td></tr></table>
+  </picture> SPOKEN LANGUAGES</th></tr><tr><td align="center" valign="top"><img src="assets/svg/brands/gb.svg" alt="" title="English (fully proficient)" width="18"> English (fully proficient)<br><img src="assets/svg/brands/ke.svg" alt="" title="Swahili (native / fluent)" width="18"> Swahili (native / fluent)</td></tr></table>
 
 <p align="center">
   <picture>
