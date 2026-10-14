@@ -46,6 +46,8 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/wireguard/c99798">
     <img src="https://cdn.simpleicons.org/wireguard" alt="WireGuard" title="WireGuard" width="30" height="30">
   </picture>
+    <img src="https://cdn.simpleicons.org/veeam/00621e" alt="Veeam" title="Veeam" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/fortinet" alt="FortiGate" title="FortiGate" width="30" height="30">
     <img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" title="GitHub Actions" width="30" height="30">
     <img src="https://cdn.simpleicons.org/gitlab/8b3c15" alt="GitLab" title="GitLab" width="30" height="30">
     <img src="https://cdn.simpleicons.org/jenkins" alt="Jenkins" title="Jenkins" width="30" height="30">
@@ -68,6 +70,8 @@
   </picture>
     <img src="https://cdn.simpleicons.org/zsh" alt="Zsh" title="Zsh" width="30" height="30">
     <img src="https://cdn.simpleicons.org/gnubash/2b5e14" alt="Bash" title="Bash" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/selenium/256117" alt="Selenium" title="Selenium" width="30" height="30">
+    <img src="https://cdn.simpleicons.org/argo/83442a" alt="Argo CD" title="Argo CD" width="30" height="30">
     <img src="https://cdn.simpleicons.org/prometheus" alt="Prometheus" title="Prometheus" width="30" height="30">
     <img src="https://cdn.simpleicons.org/grafana" alt="Grafana" title="Grafana" width="30" height="30">
     <picture>
@@ -86,7 +90,11 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/logstash/8cb2bf">
     <img src="https://cdn.simpleicons.org/logstash" alt="Logstash" title="Logstash" width="30" height="30">
   </picture>
-    <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30"></td></tr></table>
+    <img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30">
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/opentelemetry/8c8c8c">
+    <img src="https://cdn.simpleicons.org/opentelemetry" alt="OpenTelemetry" title="OpenTelemetry" width="30" height="30">
+  </picture></td></tr></table>
 
 <table align="center"><tr><th align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/brackets.svg">
