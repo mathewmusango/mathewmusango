@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="6 6 36 36" role="img" aria-label="calico — glyph">
+<title>calico — glyph</title>
+
+<path d="M14,14 L34,34 M34,14 L14,34 M14,14 H34 V34 H14 Z" fill="none" stroke="#218bff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="14" cy="14" r="3" fill="#218bff"/><circle cx="34" cy="14" r="3" fill="#218bff"/><circle cx="14" cy="34" r="3" fill="#218bff"/><circle cx="34" cy="34" r="3" fill="#218bff"/>
+</svg>
