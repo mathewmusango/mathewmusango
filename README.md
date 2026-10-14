@@ -162,10 +162,6 @@
     <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/linuxfoundation/8ca5c2">
     <img src="https://cdn.simpleicons.org/linuxfoundation" alt="Linux Foundation" title="Linux Foundation" width="30" height="30">
   </picture>
-    <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/cncf/9c9a9b">
-    <img src="https://cdn.simpleicons.org/cncf" alt="CNCF" title="CNCF" width="30" height="30">
-  </picture>
     <img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30">
     <img src="https://cdn.simpleicons.org/google" alt="Google" title="Google" width="30" height="30">
     <picture>
@@ -177,7 +173,7 @@
 <table align="center"><tr><th align="center" valign="top"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/globe.svg">
     <img src="assets/svg/icons/globe-light.svg" alt="Spoken Languages" title="Spoken Languages — section" width="18" height="18">
-  </picture> SPOKEN LANGUAGES</th></tr><tr><td align="center" valign="top"><img src="assets/svg/brands/gb.svg" alt="" title="English (fully proficient)" width="18"> English (fully proficient) · <img src="assets/svg/brands/ke.svg" alt="" title="Swahili (native / fluent)" width="18"> Swahili (native / fluent)</td></tr></table>
+  </picture> SPOKEN LANGUAGES</th></tr><tr><td align="center" valign="top"><img src="assets/svg/brands/gb.svg" alt="" title="English (fully proficient)" width="18"> English (fully proficient)<br><img src="assets/svg/brands/ke.svg" alt="" title="Swahili (native / fluent)" width="18"> Swahili (native / fluent)</td></tr></table>
 
 <p align="center">
   <picture>
