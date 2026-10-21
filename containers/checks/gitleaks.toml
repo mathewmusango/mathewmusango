@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "local, gitignored artifacts that are not part of the repository"
+paths = [
+  '''\.preview/''',
+]
