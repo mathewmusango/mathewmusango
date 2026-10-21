@@ -22,7 +22,7 @@ podman-compose -f containers/checks/compose.yml run --rm yaml-syntax
 | `yaml` | `rhysd/actionlint` | `actionlint` over the workflows |
 | `yaml-syntax` | `ruby:alpine` | `ruby -ryaml` over every `*.yml` / `*.yaml` |
 
-`secrets` and `deps` have no service here on purpose: `gitleaks` and `dependency-review` are CI-only surfaces, the second because it reads a pull-request diff.
+`deps` has no service here on purpose: `dependency-review` reads a pull-request diff.
 
 ## Notes
 
