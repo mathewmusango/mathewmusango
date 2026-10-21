@@ -12,7 +12,7 @@ else
   BOLD=""; GREEN=""; YELLOW=""; RED=""; NC=""
 fi
 
-ALL="shell yaml yaml-syntax"
+ALL="shell yaml yaml-syntax gitleaks"
 MODE="diff"
 VERBOSE=0
 SURFACES=""
@@ -59,6 +59,7 @@ surface_glob() {
 
 surface_touched() {
   case "$1" in
+    gitleaks)                    return 0 ;;
     shell)                       grep -qE '\.sh$|(^|/)\.githooks/' || return 1 ;;
     yaml|yaml-syntax) grep -qE '\.ya?ml$' || return 1 ;;
   esac

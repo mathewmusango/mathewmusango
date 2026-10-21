@@ -20,6 +20,7 @@ Diff-gated by default: changed files come from `origin/main...HEAD` plus the sta
 | `shell` | `shellcheck -S warning` across `*.sh` and `.githooks/` | `shellcheck -S warning <files>` |
 | `yaml` | `actionlint` across `.github/workflows/` | `actionlint` |
 | `yaml-syntax` | every `*.yml` / `*.yaml` parses | `ruby -ryaml -e 'YAML.load_file(ARGV[0])' <file>` |
+| `gitleaks` | whole-repo secret scan, **ungated** — local only | `gitleaks dir --config containers/checks/gitleaks.toml --redact .` |
 
 The third column is a convenience, not a proof: it uses the host's tool versions rather than the container's, so a pass there says nothing about CI.
 
