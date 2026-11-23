@@ -31,11 +31,18 @@
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/wireguard/c99798"><img src="https://cdn.simpleicons.org/wireguard" alt="WireGuard" title="WireGuard" width="30" height="30"></picture></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/veeam/00621e" alt="Veeam" title="Veeam" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/fortinet" alt="FortiGate" title="FortiGate" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/keycloak/686868"><img src="https://cdn.simpleicons.org/keycloak" alt="Keycloak" title="Keycloak" width="30" height="30"></picture></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/openbao" alt="OpenBao" title="OpenBao" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/githubactions" alt="GitHub Actions" title="GitHub Actions" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/gitlab/8b3c15" alt="GitLab" title="GitLab" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/forgejo/d57c33" alt="Forgejo" title="Forgejo" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="assets/svg/brands/artifactory.svg" alt="Artifactory" title="Artifactory" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/jenkins" alt="Jenkins" title="Jenkins" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/n8n" alt="n8n" title="n8n" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="assets/svg/brands/sonarqube.svg" alt="SonarQube" title="SonarQube" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="assets/svg/brands/semgrep.png" alt="Semgrep" title="Semgrep" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="assets/svg/brands/codeql.png" alt="CodeQL" title="CodeQL" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="assets/svg/brands/openssf.svg" alt="OpenSSF" title="OpenSSF" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/ansible" alt="Ansible" title="Ansible" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/packer/015c83" alt="Packer" title="Packer" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/helm/9396ca"><img src="https://cdn.simpleicons.org/helm" alt="Helm" title="Helm" width="30" height="30"></picture></a>
@@ -49,9 +56,16 @@
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/gnubash/2b5e14" alt="Bash" title="Bash" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="assets/svg/brands/powershell.svg" alt="PowerShell" title="PowerShell" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/selenium/256117" alt="Selenium" title="Selenium" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/pytest" alt="pytest" title="pytest" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/vitest/00a64b" alt="Vitest" title="Vitest" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/vite" alt="Vite" title="Vite" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/react/4499b0" alt="React" title="React" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/fastapi" alt="FastAPI" title="FastAPI" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/argo/83442a" alt="Argo CD" title="Argo CD" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/prometheus" alt="Prometheus" title="Prometheus" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/grafana" alt="Grafana" title="Grafana" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="assets/svg/brands/pyroscope.svg" alt="Pyroscope" title="Pyroscope" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="assets/svg/brands/alloy.svg" alt="Alloy" title="Alloy" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/icinga/8f8fa0"><img src="https://cdn.simpleicons.org/icinga" alt="Icinga" title="Icinga" width="30" height="30"></picture></a>
     <a href="#!" tabindex="-1"><img src="assets/svg/brands/nagios.svg" alt="Nagios" title="Nagios" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/elasticsearch/8cb2bf"><img src="https://cdn.simpleicons.org/elasticsearch" alt="Elasticsearch" title="Elasticsearch" width="30" height="30"></picture></a>
@@ -63,13 +77,16 @@
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/wazuh-dark.svg"><img src="assets/svg/brands/wazuh.svg" alt="Wazuh" title="Wazuh" width="30" height="30"></picture></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/obsidian" alt="Obsidian" title="Obsidian" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/markdown/8c8c8c"><img src="https://cdn.simpleicons.org/markdown" alt="MkDocs" title="MkDocs" width="30" height="30"></picture></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/docusaurus/32a34c" alt="Docusaurus" title="Docusaurus" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/svg/brands/kroki-dark.svg"><img src="assets/svg/brands/kroki.svg" alt="Kroki" title="Kroki" width="30" height="30"></picture></a>
-    <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/opentelemetry/8c8c8c"><img src="https://cdn.simpleicons.org/opentelemetry" alt="OpenTelemetry" title="OpenTelemetry" width="30" height="30"></picture></a></td></tr></table>
+    <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/opentelemetry/8c8c8c"><img src="https://cdn.simpleicons.org/opentelemetry" alt="OpenTelemetry" title="OpenTelemetry" width="30" height="30"></picture></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/k6" alt="k6" title="k6" width="30" height="30"></a></td></tr></table>
 
 <table align="center"><tr><th align="center" valign="top"><a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/brackets.svg"><img src="assets/svg/icons/brackets-light.svg" alt="Languages" title="Languages — section" width="18" height="18"></picture></a> LANGUAGES</th></tr><tr><td align="center" valign="top"><a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/python" alt="Python" title="Python" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/html5" alt="HTML" title="HTML" width="30" height="30"></a>
     <a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/css/baa3d1"><img src="https://cdn.simpleicons.org/css" alt="CSS" title="CSS" width="30" height="30"></picture></a>
-    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/javascript/887b10" alt="JavaScript" title="JavaScript" width="30" height="30"></a></td></tr></table>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/javascript/887b10" alt="JavaScript" title="JavaScript" width="30" height="30"></a>
+    <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/typescript" alt="TypeScript" title="TypeScript" width="30" height="30"></a></td></tr></table>
 
 <table align="center"><tr><th align="center" valign="top"><a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/svg/icons/cap.svg"><img src="assets/svg/icons/cap-light.svg" alt="Certifications" title="Certifications — section" width="18" height="18"></picture></a> CERTIFICATIONS</th></tr><tr><td align="center" valign="top"><a href="#!" tabindex="-1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/linuxfoundation/8ca5c2"><img src="https://cdn.simpleicons.org/linuxfoundation" alt="Linux Foundation" title="Linux Foundation" width="30" height="30"></picture></a>
     <a href="#!" tabindex="-1"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" title="Kubernetes" width="30" height="30"></a>
